@@ -20,7 +20,7 @@ botaoAdicionar.addEventListener("click", function(){
     
     var ul = document.querySelector("#mensagens-erro");
     ul.innerHTML = "";
-})
+});
 
  function adicionaPacienteNaTabela(paciente){
     var pacienteTr = montaTr(paciente);
@@ -37,7 +37,7 @@ function exibeMensagensDeErro(erros){
         li.textContent = erro;
         ul.appendChild(li);
     });
-}
+};
 
 function obtemPacienteDoFormulario(form) {
     var paciente = {
@@ -48,7 +48,7 @@ function obtemPacienteDoFormulario(form) {
         imc: calcularImc(form.peso.value,form.altura.value)
     }
     return paciente;
-}
+};
 
 function montaTr(paciente){
 
@@ -62,7 +62,7 @@ function montaTr(paciente){
     pacienteTr.appendChild(montaTd(paciente.imc,"info-imc"));
     
     return pacienteTr;
-}
+};
 
 function montaTd(dado,classe){
     var td = document.createElement("td");
@@ -70,13 +70,13 @@ function montaTd(dado,classe){
     td.textContent = dado;
 
     return td
-}
+};
 
 function validaPaciente(paciente){
 
     var erros = [];
 
-    if (paciente.nome.length ==0)
+    if (paciente.nome.length == 0)
         erros.push("O nome não pode ser em branco!");
 
     if(!validaPeso(paciente.peso)) 
@@ -96,4 +96,4 @@ function validaPaciente(paciente){
     
 return erros;
 
-}
+};
