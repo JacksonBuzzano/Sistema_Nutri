@@ -1,29 +1,38 @@
 var botaoAdicionar = document.querySelector("#buscar-pacientes");
 
 botaoAdicionar.addEventListener("click",function(){
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET","http://localhost/Curso%20OnLine/Projeto%2001/Api.txt", true);
+    const resultado_api = new XMLHttpRequest();
+    resultado_api.open("GET","http://localhost/Curso%20OnLine/Projeto%2001/Api.txt", true);
 
-    xhr.addEventListener("load", function(){
-        var erroAjax = document.querySelector("#erro-ajax");
-        if(xhr.status == 200){
+    resultado_api.addEventListener("load",function(){
+        const erroAjax = document.querySelector("#erro-ajax");
+        const filtar_api = document.getElementById('filtrar-api');
+        
+        if(resultado_api.status == 200){
             erroAjax.classList.add("invisivel");
-            var resposta = xhr.responseText ;
+            var resposta = resultado_api.responseText ;
             
-            var pacientes = JSON.parse(resposta);
+            const pacientes = JSON.parse(resposta);
 
-            pacientes.forEach(function(paciente) {
-               adicionaPacienteNaTabela(paciente);
-            });
+                for(var  i = 0; i < pacientes.length; i++){
+                    if(filtar_api.value === pacientes[i].nome){
+                        adicionaPacienteNaTabela(pacientes[i]);
+                        filtar_api.value = "";
+                        erroAjax.style.display = "none";
+                        break;
+                    }else{
+                        erroAjax.style.display = "block";
+                    }
+                };
 
         }else{
-            console.log(xhr.status);
-            console.log(xhr.responseText);     
+            console.log(resultado_api.status);
+            console.log(resultado_api.responseText);     
 
             erroAjax.classList.remove("invisivel")
         }
     });
  
-    xhr.send();
+    resultado_api.send();
     
 });

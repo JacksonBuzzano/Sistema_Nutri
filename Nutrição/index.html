@@ -3,22 +3,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Informação Nutricional</title>
-		<link rel="icon" href="favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" type="text/css" href="css/reset.css">
-		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="../css/estilo.css">
+
 
 	</head>
 	<body>
 
-		<header>
-			<div class="container">
-				<h1 class="titulo">Nutrition Assessment</h1>
-			</div>
-		</header>
 		<main>
 			<section class="container">
-				<h2>Nome dos pacientes</h2>
-				<label for="filtrar-tabela">Filtre:</label>
+				<h2>Meus pacientes</h2>
+				<label for="filtrar-tabela">Filtrar:</label>
 				<input type="text" name="filtro" id="filtrar-tabela" placeholder="Digite o nome do paciente">
 				<table>
 					<thead>
@@ -32,10 +26,10 @@
 					</thead>
 					<tbody id="tabela-pacientes" >
 						<tr class="paciente" id="primeiro-paciente" >
-							<td class="info-nome">Ricardo</td>
-							<td class="info-peso">110</td>
-							<td class="info-altura">2.03</td>
-							<td class="info-gordura">16</td>
+							<td class="info-nome">Marcelo</td>
+							<td class="info-peso">100</td>
+							<td class="info-altura">2.00</td>
+							<td class="info-gordura">10</td>
 							<td class="info-imc">0</td>
 						</tr>
 
@@ -48,7 +42,7 @@
 						</tr>
 
 						<tr class="paciente" >
-							<td class="info-nome">Erica</td>
+							<td class="info-nome">Claudia</td>
 							<td class="info-peso">54</td>
 							<td class="info-altura">1.64</td>
 							<td class="info-gordura">14</td>
@@ -63,7 +57,7 @@
 							<td class="info-imc">0</td>
 						</tr>
 						<tr class="paciente" >
-							<td class="info-nome">Tatiana</td>
+							<td class="info-nome">Fernanda</td>
 							<td class="info-peso">46</td>
 							<td class="info-altura">1.55</td>
 							<td class="info-gordura">19</td>
@@ -72,6 +66,7 @@
 					</tbody>
 				</table>
 				<span id="erro-ajax" class="invisivel">Erro ao busca os pacientes</span>
+				<input type="text" name="filtro" id="filtrar-api" placeholder="Pesquisar cliente" class="campo">
 				<button id="buscar-pacientes" class="botao bto-principal">Buscar Paciente</button>
 			</section>
 		</main>
@@ -104,8 +99,7 @@
 		<!-- Importação dos Javascripts AQUI -->
 		<script src="../js/calcula_imc.js"></script>
 		<script src="../js/formulario.js"></script>
-		<script src="js/remover-paciente.js"></script>
-		<script src="js/filtra.js"></script>
+		<script src="../js/filtro.js"></script>
 		<script src="../js/buscar_paciente.js"></script>
 	</body>
 </html>
