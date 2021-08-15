@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Informação Nutricional</title>
 		<link rel="stylesheet" type="text/css" href="../css/estilo.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
 
 	</head>
@@ -13,8 +14,8 @@
 			<section class="container">
 				<h2>Meus pacientes</h2>
 				<label for="filtrar-tabela">Filtrar:</label>
-				<input type="text" name="filtro" id="filtrar-tabela" placeholder="Digite o nome do paciente">
-				<table>
+				<input type="text" name="filtro" id="filtrar-tabela" placeholder="Digite o nome do paciente" class="campo campo-medio">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>Nome</th>
@@ -65,9 +66,17 @@
 						</tr>
 					</tbody>
 				</table>
-				<span id="erro-ajax" class="invisivel">Erro ao busca os pacientes</span>
+				<div class="teste">
+					<div class="alert alert-danger" id="alert">
+						Paciente não encontrado!
+					</div>
+					<div class="alert alert-warning" id="alerta">
+						Erro ao realizar a busca do paciente!<br>Favor contratar o seu administrador do sistema.
+					  </div>
+				</div>
+
 				<input type="text" name="filtro" id="filtrar-api" placeholder="Pesquisar cliente" class="campo">
-				<button id="buscar-pacientes" class="botao bto-principal">Buscar Paciente</button>
+				<button id="buscar-pacientes" class="btn btn-primary">Buscar Paciente</button>
 			</section>
 		</main>
 
@@ -92,7 +101,7 @@
 					<input id="gordura" name="gordura" type="text" placeholder="digite a porcentagem de gordura do seu paciente" class="campo campo-medio">
 				</div>
 		
-				<button id="adicionar-paciente" class="botao bto-principal">Adicionar</button>
+				<button id="adicionar-paciente" class="btn btn-primary">Adicionar</button>
 			</form>
 		</section>
 		
