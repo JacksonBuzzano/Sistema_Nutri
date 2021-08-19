@@ -1,25 +1,22 @@
-const titulo = document.querySelector(".titulo");
+//Verifica o peso e a alteura dos que já estão na lista no html, calculando o IMC
 const pacientes = document.querySelectorAll(".paciente");
-
-let peso = paciente.querySelector(".info-peso").textContent;
-let altura = paciente.querySelector(".info-altura").textContent;
 
 for(var i = 0 ; i < pacientes.length; i++){
     
     var paciente = pacientes[i];
+    let peso = paciente.querySelector(".info-peso").textContent;
+    let altura = paciente.querySelector(".info-altura").textContent;
        
     var pesoEhValido = validaPeso(peso);
     var AlturaEhValido = validaAltura(altura);
     
     if (!pesoEhValido){
-        console.log("Peso Inválido");
         pesoEhValido = false;
         paciente.querySelector(".info-imc").textContent  = "Peso Inválido";
         paciente.classList.add("paciente-invalido");
     }
     
     if (!AlturaEhValido){
-        console.log("Altura inválido");
         AlturaEhValido = false;
         paciente.querySelector(".info-imc").textContent  = "Altura Inválida";
         paciente.classList.add("paciente-invalido");

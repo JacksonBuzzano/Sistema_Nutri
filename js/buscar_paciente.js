@@ -5,7 +5,7 @@ const filtar_api = document.getElementById("filtrar-api");
 
 botaoAdicionar.addEventListener("click",function(){
     const resultado_api = new XMLHttpRequest();
-    resultado_api.open("GET","http://localhost/Curso%20OnLine/Projeto%2001/Api.txt", true);
+    resultado_api.open("GET","http://localhost/Curso%20OnLine/Projeto%2001/lista/lista.json", true);
 
     resultado_api.addEventListener("load",function(){
 
