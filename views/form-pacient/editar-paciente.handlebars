@@ -3,15 +3,17 @@
 {{else}}
 
 {{/each}}
-<h1>Paciente {{dados.nome}}</h1>
 
 <div class="car_myDiv">
     <div class="car_myDiv1">
         <div class="car_myDiv2">
             <form class="row g-3" action="/form-pacient/editar-paciente" method="POST">
-                <div class="col-md-12">
-                    <a href="/form-pacient" class="btn btn-primary" id="link">Voltar</a><br>
-                </div>
+                <h2>
+                    <span>
+                        <ion-icon name="accessibility"></ion-icon>Paciente {{dados.nome}}
+                    </span>
+                </h2>
+                <hr>
                 <div class="col-md-3">
                     <label for="id" class="form-label">Sequência:</label>
                     <input type="text" class="form-control" name="id" value="{{dados.id}}" readonly>
@@ -20,7 +22,7 @@
                     <label for="nome" class="form-label">Nome:</label>
                     <input type="text" class="form-control" name="nome" value="{{dados.nome}}">
                 </div>
-                 <div class="col-md-2">
+                <div class="col-md-2">
                     <label for="idade" class="form-label">Idade:</label>
                     <input type="text" class="form-control" name="idade" value="{{dados.idade}}">
                 </div>
@@ -54,8 +56,15 @@
                 </div>
                 <br>
                 <div class="col-md-12">
-                     <a href="/form-pacient/excluir/{{dados.id}}" class="btn btn-danger link" id="link">Excluir</a>
-                    <button type="submit" class="btn btn-warning" id="link">Editar</button>           
+                    <a href="/form-pacient/excluir/{{dados.id}}" class="btn btn-danger" id="link"><span>
+                            <ion-icon name="trash"></ion-icon>
+                        </span> Excluir</a>
+                    <button type="submit" class="btn btn-warning" id="link"><span>
+                            <ion-icon name="refresh"></ion-icon>
+                        </span>Editar</button>
+                    <a href="/form-pacient" class="btn btn-primary" id="link"><span>
+                            <ion-icon name="arrow-undo"></ion-icon>
+                        </span>Voltar</a><br>
                 </div>
             </form>
         </div>

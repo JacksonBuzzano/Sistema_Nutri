@@ -1,12 +1,8 @@
 <h1>Lista de Paciente</h1>
 
 <main>
-    <div class="container-sm">
+    <div class="container">
         <section class="container">
-            <h2>Meus pacientes</h2>
-            <label for="filtrar-tabela">Filtrar:</label>
-            <input type="text" name="filtro" id="filtrar-tabela" placeholder="Digite o nome do paciente"
-                class="campo campo-medio">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -20,27 +16,29 @@
                         <th>IMC</th>
                     </tr>
                 </thead>
-                <tbody id="tabela-pacientes">
+                <tbody class="container">
                     {{#each dados}}
-                    <tr class="paciente" id="primeiro-paciente">
-                        <td class="info-nome">{{nome}}</td>
-                        <td class="info-peso">{{cidade}}</td>
-                        <td class="info-altura">{{endereco}}</td>
-                        <td class="info-gordura">{{estado}}</td>
-                        <td class="info-imc">{{email}}</td>
-                        <td class="info-altura">{{peso}}</td>
-                        <td class="info-gordura">{{altura}}</td>
-                        <td class="info-imc">{{imc}}</td>
-                        <td><a href="form-pacient/editar/{{id}}"><button class="btn btn-success">Selecionar</button></a>
+                    <tr>
+                        <td><span><ion-icon name="person"></ion-icon></span> {{nome}}</td>
+                        <td>{{cidade}}</td>
+                        <td>{{endereco}}</td>
+                        <td>{{estado}}</td>
+                        <td>{{email}}</td>
+                        <td>{{peso}}</td>
+                        <td>{{altura}}</td>
+                        <td>{{imc}}</td>
+                        <td><a href="form-pacient/editar/{{id}}"><button class="btn btn-success"><span>
+                                        <ion-icon name="information-circle"></ion-icon>
+                                    </span> Ver</button></a>
                         </td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
 
-            <input type="text" name="filtro" id="filtrar-api" placeholder="Pesquisar cliente" class="campo">
-            <button id="buscar-pacientes" class="btn btn-primary">Buscar Paciente</button>
-            <a href="/form-pacient/cad-paciente"><button id="cadastar" class="btn btn-primary">Cadastrar</button></a>
+            <a href="/form-pacient/cad-paciente"><button id="link" class="btn btn-primary"><span>
+                        <ion-icon name="person-add"></ion-icon>
+                    </span>Novo</button></a>
         </section>
     </div>
 </main>
