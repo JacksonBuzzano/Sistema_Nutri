@@ -1,0 +1,59 @@
+{{#each erros}}
+<div class="alert alert-danger">{{texto}}</div>
+
+{{else}}
+
+{{/each}}
+
+<h1>Preencha os campos abaixo</h1>
+
+<div class="car_myDiv">
+    <div class="car_myDiv1">
+        <div class="car_myDiv2">
+            <button class="btn btn-primary" id="voltarPagina" onclick="voltarPagina()">Cancelar</button>
+             <hr>
+            <form class="row g-3" action="/form-pacient/cad/novo" method="POST">
+                <div class="col-md-8">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" class="form-control" name="nome">
+                </div>
+                <div class="col-md-2">
+                    <label for="idade" class="form-label">Idade:</label>
+                    <input type="text" class="form-control" name="idade">
+                </div>
+                <div class="col-5">
+                    <label for="cidade" class="form-label">Cidade:</label>
+                    <input type="text" class="form-control" name="cidade">
+                </div>
+                <div class="col-md-7">
+                    <label for="endereco" class="form-label">Endereço:</label>
+                    <input type="text" class="form-control" name="endereco">
+                </div>
+                <div class="col-4">
+                    <label for="estado" class="form-label">Estado:</label>
+                    <input type="text" class="form-control" name="estado">
+                </div>
+                <div class="col-md-8">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" name="email">
+                </div>
+                <div class="col-md-6">
+                    <label for="altura" class="form-label">Altura:</label>
+                    <input type="text" class="form-control" name="altura">
+                </div>
+                <div class="col-md-4">
+                    <label for="peso" class="form-label">Peso:</label>
+                    <input type="text" class="form-control" name="peso">
+                </div>
+                <div class="col-md-2">
+                    <label for="imc" class="form-label">IMC:</label>
+                    <input type="text" class="form-control" name="imc" readonly>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-success" id="link">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
