@@ -13,15 +13,19 @@
             <button class="btn btn-primary" id="voltarPagina" onclick="voltarPagina()"><span><ion-icon name="arrow-undo"></ion-icon></span> Cancelar</button>
              <hr>
             <form class="row g-3" action="/form-pacient/cad/novo" method="POST">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <label for="nome" class="form-label">Nome:</label>
                     <input type="text" class="form-control" name="nome">
+                </div>
+                <div class="col-md-3">
+                    <label for="data" class="form-label">Data nascimento:</label>
+                    <input type="date" class="form-control" name="data_nascimento">
                 </div>
                 <div class="col-md-2">
                     <label for="idade" class="form-label">Idade:</label>
                     <input type="text" class="form-control" name="idade">
                 </div>
-                <div class="col-5">
+                <div class="col-3">
                     <label for="cidade" class="form-label">Cidade:</label>
                     <input type="text" class="form-control" name="cidade">
                 </div>
@@ -29,19 +33,31 @@
                     <label for="endereco" class="form-label">Endereço:</label>
                     <input type="text" class="form-control" name="endereco">
                 </div>
-                <div class="col-4">
+                <div class="col-md-2">
+                    <label for="numero" class="form-label">N°:</label>
+                    <input type="text" class="form-control" name="numero">
+                </div>
+                <div class="col-2">
                     <label for="estado" class="form-label">Estado:</label>
                     <input type="text" class="form-control" name="estado">
                 </div>
-                <div class="col-md-8">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email">
-                </div>
                 <div class="col-md-6">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="text" class="form-control" name="email">
+                </div>
+                <div class="col-md-4">
+                    <label for="telefone" class="form-label">Telefone:</label>
+                    <input type="text" class="form-control" name="telefone">
+                </div>
+                <div class="col-md-4">
+                    <label for="estado_civil" class="form-label">Estado Cívil:</label>
+                    <input type="text" class="form-control" name="estado_civil">
+                </div>
+                <div class="col-md-5">
                     <label for="altura" class="form-label">Altura:</label>
                     <input type="text" class="form-control" name="altura">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="peso" class="form-label">Peso:</label>
                     <input type="text" class="form-control" name="peso">
                 </div>

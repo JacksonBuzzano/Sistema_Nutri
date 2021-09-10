@@ -4,9 +4,10 @@ const bodyParser = require('body-parser');
 const handlebars = require("express-handlebars");
 const path = require("path");
 const app = express();
-const fs = require('fs');
 
-const lista_pacientes = require("./routes/listar/admin");
+//const db = require("./conection/db");
+const form_pacientes = require("./routes/listar/router-paciente");
+const form_agenda = require("./routes/listar/router-agenda")
 
 
 //Template
@@ -22,7 +23,18 @@ app.use(express.static(path.join(__dirname, "/publico")));
 
 
 //Rotas
-app.use('/form-pacient', lista_pacientes);
+app.use('/form-pacient', form_pacientes);
+app.use('/form-agenda', form_agenda);
+
+
+/*index.js
+(async () => {
+    console.log('Começou!');
+ 
+    console.log('SELECT * FROM jb_cliente');
+    const clientes = await db.selectCustomers();
+    console.log(clientes);
+})();*/
 
 
 
