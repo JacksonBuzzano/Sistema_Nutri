@@ -1,0 +1,39 @@
+<h1>Agenda</h1>
+
+
+
+<main>
+    <div class="container">
+        <section class="container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Médico</th>
+                        <th>Sala</th>
+                    </tr>
+                </thead>
+                <tbody class="container">
+                    {{#each dados}}
+                    <tr>
+                        <td><span><ion-icon name="person"></ion-icon></span>{{paciente}}</td>
+                        <td>{{data}}</td>
+                        <td>{{hora}}</td>
+                        <td>{{medico}}</td>
+                        <td>{{sala}}</td>
+                        <td><a href="form-agenda/editar/{{id}}"><button class="btn btn-success"><span>
+                                        <ion-icon name="information-circle"></ion-icon>
+                                    </span> Ver</button></a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <a href="/form-agenda/cad-agenda"><button id="link" class="btn btn-primary"><span>
+                        <ion-icon name="person-add"></ion-icon>
+                    </span>Novo</button></a>
+        </section>
+    </div>
+</main>

@@ -10,53 +10,69 @@
             <form class="row g-3" action="/form-pacient/editar-paciente" method="POST">
                 <h2>
                     <span>
-                        <ion-icon name="accessibility"></ion-icon>Paciente {{dados.nome}}
+                        <ion-icon name="accessibility"></ion-icon>Paciente {{dados.nm_cliente}}
                     </span>
                 </h2>
                 <hr>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="id" class="form-label">Sequência:</label>
-                    <input type="text" class="form-control" name="id" value="{{dados.id}}" readonly>
+                    <input type="text" class="form-control" name="id" value="{{dados.nr_sequencia}}" readonly>
                 </div>
                 <div class="col-md-7">
                     <label for="nome" class="form-label">Nome:</label>
-                    <input type="text" class="form-control" name="nome" value="{{dados.nome}}">
+                    <input type="text" class="form-control" name="nome" value="{{dados.nm_cliente}}">
+                </div>
+                <div class="col-md-3">
+                    <label for="data" class="form-label">Data nascimento:</label>
+                    <input type="text" class="form-control" name="data_nascimento" value="{{dados.dt_nascimento}}" readonly>
                 </div>
                 <div class="col-md-2">
                     <label for="idade" class="form-label">Idade:</label>
-                    <input type="text" class="form-control" name="idade" value="{{dados.idade}}">
+                    <input type="text" class="form-control" name="idade" value="{{dados.nr_idade}}">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <label for="cidade" class="form-label">Cidade:</label>
-                    <input type="text" class="form-control" name="cidade" value="{{dados.cidade}}">
+                    <input type="text" class="form-control" name="cidade" value="{{dados.nm_cidade}}">
                 </div>
                 <div class="col-md-7">
                     <label for="endereco" class="form-label">Endereço:</label>
-                    <input type="text" class="form-control" name="endereco" value="{{dados.endereco}}">
+                    <input type="text" class="form-control" name="endereco" value="{{dados.nm_endereco}}">
                 </div>
-                <div class="col-4">
+                <div class="col-md-2">
+                    <label for="numero" class="form-label">N°:</label>
+                    <input type="text" class="form-control" name="numero" value="{{dados.nr_numero}}">
+                </div>
+                <div class="col-2">
                     <label for="estado" class="form-label">Estado:</label>
-                    <input type="text" class="form-control" name="estado" value="{{dados.estado}}">
-                </div>
-                <div class="col-md-8">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email" value="{{dados.email}}">
+                    <input type="text" class="form-control" name="estado" value="{{dados.nm_estado}}">
                 </div>
                 <div class="col-md-6">
-                    <label for="altura" class="form-label">Altura:</label>
-                    <input type="text" class="form-control" name="altura" value="{{dados.altura}}">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="text" class="form-control" name="email" value="{{dados.nm_email}}">
                 </div>
                 <div class="col-md-4">
+                    <label for="telefone" class="form-label">Telefone:</label>
+                    <input type="text" class="form-control" name="telefone" value="{{dados.nm_telefone}}">
+                </div>
+                <div class="col-md-4">
+                    <label for="estado_civil" class="form-label">Estado Cívil:</label>
+                    <input type="text" class="form-control" name="estado_civil" value="{{dados.nm_estado_civil}}">
+                </div>
+                <div class="col-md-5">
+                    <label for="altura" class="form-label">Altura:</label>
+                    <input type="text" class="form-control" name="altura" value="{{dados.nm_altura}}">
+                </div>
+                <div class="col-md-3">
                     <label for="peso" class="form-label">Peso:</label>
-                    <input type="text" class="form-control" name="peso" value="{{dados.peso}}">
+                    <input type="text" class="form-control" name="peso" value="{{dados.nr_peso}}">
                 </div>
                 <div class="col-md-2">
                     <label for="imc" class="form-label">IMC:</label>
-                    <input type="text" class="form-control" name="imc" value="{{dados.imc}}" readonly>
+                    <input type="text" class="form-control" name="imc" value="{{dados.nm_imc}}" readonly>
                 </div>
                 <br>
                 <div class="col-md-12">
-                    <a href="/form-pacient/excluir/{{dados.id}}" class="btn btn-danger" id="link"><span>
+                    <a href="/form-pacient/excluir/{{dados.nr_sequencia}}" class="btn btn-danger" id="link"><span>
                             <ion-icon name="trash"></ion-icon>
                         </span> Excluir</a>
                     <button type="submit" class="btn btn-warning" id="link"><span>
