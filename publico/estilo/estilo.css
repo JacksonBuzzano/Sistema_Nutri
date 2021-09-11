@@ -1,13 +1,26 @@
 h1{
+    margin-top: 100px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
-    margin: 20px;
+
 }
 h2{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
     margin: 20px;
+}
+
+.form-pesquisa{
+    margin-left: 120px;
+}
+
+#menu{
+    position: fixed;
+    width: 100%;
+    right: 0;
+    top: 0%;
+    z-index: 1;
 }
 
 .menu-icon{
@@ -64,3 +77,21 @@ td {
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
+.form-tela-inicial{
+    max-width: 1100px;
+    margin-left: 100px;
+    padding: 20px;
+}
+
+.div-pesquisa{
+    text-align: center;
+    width: 50px;
+    height: 20px;
+    margin-top: 12px;
+}
+
+.icone-pesquisa{
+    width: 35px;
+    height: 25px;
+}

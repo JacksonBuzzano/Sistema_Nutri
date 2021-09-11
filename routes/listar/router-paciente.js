@@ -1,29 +1,36 @@
 //Carregando módulos
 const express = require("express");
 const router = express.Router();
-const fetch = require("node-fetch");
-
 const db = require("../../models/db");
 
 //Rotas
-router.get('/', function(req, res){ //LISTAR TODOS OS PACIENTES
+router.get('/', function(req, res) { //LISTAR TODOS OS PACIENTES
     (async () => {
+        const total_paciente = await db.selectTotalPatients()
          await db.selectPatient()
-        .then(clientes => res.render('form-pacient/lista-paciente',  {dados:clientes}));
+        .then(clientes => res.render('form-pacient/lista-paciente',  {dados:clientes, total_paciente}));
+    })();
+});  
+
+router.post('/pesquisa-cliente', function(req, res) {//BUSCAR PACIENTE PELO NOME
+    (async () => {
+        let nome_paciente = req.body.nome;
+        const total_paciente = await db.selectTotalPatientsFilter(nome_paciente);
+        await db.selectPatientName(nome_paciente)
+        .then(resul_paciente => res.render('form-pacient/filtro-paciente', {dados:resul_paciente, total_paciente}));
     })();
 });
 
-router.get('/cad-paciente', function(req, res){ //ROTA PARA IR A TELA DE CADASTRO DE NOVO CLIETNE
+router.get('/cad-paciente', function(req, res) { //ROTA PARA IR A TELA DE CADASTRO DE NOVO CLIETNE
     res.render('form-pacient/cadastrar-paciente');
 });
 
-router.post('/cad/novo', function(req, res){ // ROTA PARA CADASTRAR CLIETNE NOVO
+router.post('/cad/novo', function(req, res) { // ROTA PARA CADASTRAR CLIETNE NOVO
     //const id = Math.random().toString(32).substr(2, 9);
-    //calcular o imc  
     (async () =>{
         let altura  = req.body.altura;
         let peso = req.body.peso;
-    
+        //calcular o imc
         const imc = (peso / (altura * 2)).toFixed(2);
         const dados = {
             'nm_cliente': req.body.nome,
@@ -45,16 +52,15 @@ router.post('/cad/novo', function(req, res){ // ROTA PARA CADASTRAR CLIETNE NOVO
     })();
 });
 
-router.get('/editar/:id', function(req, res){ //ROTA PARA SELECIOANR UM CLIENTE PELO ID
+router.get('/editar/:id', function(req, res) { //ROTA PARA SELECIOANR UM CLIENTE PELO ID
     let id = req.params.id;
-    
     (async () => {
         const [clientes] = await db.selectPatientID([id]);
-        res.render('form-pacient/editar-paciente',  {dados:clientes});
+        res.render('form-pacient/editar-paciente', {dados:clientes});
     })();
 });
 
-router.post('/editar-paciente', function(req, res){ //ROTA PARA EDITAR O PACIENTE
+router.post('/editar-paciente', function(req, res) { //ROTA PARA EDITAR O PACIENTE
     (async () => {
         const id = req.body.id;
         //calcular o imc
@@ -83,7 +89,7 @@ router.post('/editar-paciente', function(req, res){ //ROTA PARA EDITAR O PACIENT
     })();
 });
 
-router.get('/excluir/:id', function(req, res){
+router.get('/excluir/:id', function(req, res) {
     (async () => {
         const id = req.params.id;
         await db.deletePatient(id);

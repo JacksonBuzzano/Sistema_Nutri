@@ -1,21 +1,12 @@
-<h1>Lista de Paciente</h1>
+<h1>Pesquisa realizada pelo filtro</h1>
+
 <hr>
-<form class="row g-3 form-pesquisa" action="/form-pacient/pesquisa-cliente" method="post">
-    <div class="col-md-3">
-        <br>
-        <input type="text" class="form-control" name="nome" required>
-    </div>
-    <div class="div-pesquisa">
-        <br>
-        <button class="btn btn-info">
-            <ion-icon class="icone-pesquisa" name="search"></ion-icon>
-        </button>
-    </div>
-</form>
-<br><br>
 <main>
     <div class="container">
         <section class="container">
+            <a href="/form-pacient"><button id="link" class="btn btn-primary"><span>
+                        <ion-icon name="close"></ion-icon>
+                    </span>Reset</button></a>
             <table class="table table-hover myTable">
                 <thead>
                     <tr>
@@ -52,7 +43,6 @@
                     {{/each}}
                 </tbody>
             </table>
-            <br>
             <hr>
             <a href="/form-pacient/cad-paciente"><button id="link" class="btn btn-primary"><span>
                         <ion-icon name="person-add"></ion-icon>
