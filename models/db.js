@@ -27,9 +27,23 @@ async function registerPatient(values){
 
 async function selectPatient(){
     const conn = await connect();
-    const [rows] = await conn.query('SELECT * FROM jb_cliente;');
+    const [rows] = await conn.query('SELECT * FROM jb_cliente');//WHERE nr_sequencia BETWEEN 1 AND 5'
     return rows;
 };
+
+async function selectPatientName(values){
+    const conn = await connect();
+    const sql = 'SELECT * FROM jb_cliente WHERE nm_cliente LIKE "' + values + '%"';
+    const [rows] = await conn.query(sql);
+    return rows;
+}
+
+async function selectTotalPatientsFilter(values){
+    const conn = await connect();
+    const sql = 'SELECT COUNT(*) AS Total FROM jb_cliente WHERE nm_cliente LIKE "' + values + '%"';
+    const [rows] = await conn.query(sql);
+    return rows[0].Total;
+}
 
 async function selectPatientID(id){
     const conn = await connect();
@@ -55,11 +69,20 @@ async function deletePatient(id){
     return rows;
 }
 
+async function selectTotalPatients(){
+    const conn = await connect();
+    const [rows] = await conn.query('SELECT COUNT(*) AS Total FROM jb_cliente');
+    return rows[0].Total;
+}
+
 module.exports = {
     registerPatient,
     selectPatient,
+    selectPatientName,
     selectPatientID,
     editPatient,
-    deletePatient
+    deletePatient, 
+    selectTotalPatients,
+    selectTotalPatientsFilter
 }
 
