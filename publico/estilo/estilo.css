@@ -15,6 +15,11 @@ h2{
     margin-left: 120px;
 }
 
+.form-agenda{
+    position: relative;
+    max-width: 600px;
+}
+
 #menu{
     position: fixed;
     width: 100%;

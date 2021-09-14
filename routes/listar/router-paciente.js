@@ -1,10 +1,10 @@
 //Carregando módulos
 const express = require("express");
 const router = express.Router();
-const db = require("../../models/db");
+const db = require("../../models/SQLPatients/consultPatients");
 
 //Rotas
-router.get('/', function(req, res) { //LISTAR TODOS OS PACIENTES
+router.get('/', function(req, res) {
     (async () => {
         const total_paciente = await db.selectTotalPatients()
          await db.selectPatient()
@@ -12,7 +12,7 @@ router.get('/', function(req, res) { //LISTAR TODOS OS PACIENTES
     })();
 });  
 
-router.post('/pesquisa-cliente', function(req, res) {//BUSCAR PACIENTE PELO NOME
+router.post('/pesquisa-cliente', function(req, res) {
     (async () => {
         let nome_paciente = req.body.nome;
         const total_paciente = await db.selectTotalPatientsFilter(nome_paciente);
@@ -21,16 +21,14 @@ router.post('/pesquisa-cliente', function(req, res) {//BUSCAR PACIENTE PELO NOME
     })();
 });
 
-router.get('/cad-paciente', function(req, res) { //ROTA PARA IR A TELA DE CADASTRO DE NOVO CLIETNE
+router.get('/cad-paciente', function(req, res) {
     res.render('form-pacient/cadastrar-paciente');
 });
 
-router.post('/cad/novo', function(req, res) { // ROTA PARA CADASTRAR CLIETNE NOVO
-    //const id = Math.random().toString(32).substr(2, 9);
+router.post('/cad/novo', function(req, res) {
     (async () =>{
         let altura  = req.body.altura;
         let peso = req.body.peso;
-        //calcular o imc
         const imc = (peso / (altura * 2)).toFixed(2);
         const dados = {
             'nm_cliente': req.body.nome,
@@ -52,7 +50,7 @@ router.post('/cad/novo', function(req, res) { // ROTA PARA CADASTRAR CLIETNE NOV
     })();
 });
 
-router.get('/editar/:id', function(req, res) { //ROTA PARA SELECIOANR UM CLIENTE PELO ID
+router.get('/editar/:id', function(req, res) {
     let id = req.params.id;
     (async () => {
         const [clientes] = await db.selectPatientID([id]);
@@ -60,10 +58,9 @@ router.get('/editar/:id', function(req, res) { //ROTA PARA SELECIOANR UM CLIENTE
     })();
 });
 
-router.post('/editar-paciente', function(req, res) { //ROTA PARA EDITAR O PACIENTE
+router.post('/editar-paciente', function(req, res) {
     (async () => {
         const id = req.body.id;
-        //calcular o imc
         let altura  = req.body.altura;
         let peso = req.body.peso;
         const imc = (peso / (altura * 2)).toFixed(2);

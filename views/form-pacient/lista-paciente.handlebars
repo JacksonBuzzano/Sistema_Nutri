@@ -1,17 +1,24 @@
 <h1>Lista de Paciente</h1>
 <hr>
-<form class="row g-3 form-pesquisa" action="/form-pacient/pesquisa-cliente" method="post">
-    <div class="col-md-3">
-        <br>
-        <input type="text" class="form-control" name="nome" required>
+<main>
+    <div class="container">
+        <section class="container">
+            <form class="row g-2 form-agenda" action="/form-pacient/pesquisa-cliente" method="POST">
+                <div class="col-md-7">
+                    <br>
+                    <input type="text" class="form-control form-control-lg" name="nome" required>
+                </div>
+                <div class="col-md-4">
+                    <br>
+                    <button class="btn btn-success">
+                        <ion-icon class="icone-pesquisa" name="search"></ion-icon>
+                    </button>
+                </div>
+            </form>
+        </section>
     </div>
-    <div class="div-pesquisa">
-        <br>
-        <button class="btn btn-info">
-            <ion-icon class="icone-pesquisa" name="search"></ion-icon>
-        </button>
-    </div>
-</form>
+</main>
+
 <br><br>
 <main>
     <div class="container">

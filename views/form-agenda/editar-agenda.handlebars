@@ -1,46 +1,55 @@
-{{#each erros}}
-<div class="alert alert-danger">{{texto}}</div>
-{{else}}
-
-{{/each}}
-
 <div class="car_myDiv">
     <div class="car_myDiv1">
         <div class="car_myDiv2">
             <form class="row g-3" action="/form-agenda/editar-agenda" method="POST">
                 <h2>
                     <span>
-                        <ion-icon name="accessibility"></ion-icon>Paciente {{dados.nome}}
+                        <ion-icon name="accessibility"></ion-icon>Paciente: {{dados.nm_cliente}}
                     </span>
                 </h2>
                 <hr>
-                <div class="col-md-3">
+                <div class="col-md-0">
+                    <input type="hidden" class="form-control" name="paciente" value="{{dados.nm_paciente}}">
+                </div>
+                <div class="col-md-1">
                     <label for="id" class="form-label">Sequência:</label>
-                    <input type="text" class="form-control" name="id" value="{{dados.id}}" readonly>
+                    <input type="text" class="form-control" name="id" value="{{dados.nr_sequencia}}" readonly>
                 </div>
                 <div class="col-md-7">
-                    <label for="paciente" class="form-label">Paciente:</label>
-                    <input type="text" class="form-control" name="paciente" value="{{dados.paciente}}">
+                    <label for="cliente" class="form-label">Paciente:</label>
+                    <input type="text" class="form-control" name="cliente" value="{{dados.nm_cliente}}" readonly>
                 </div>
                 <div class="col-md-2">
-                    <label for="data" class="form-label">Data:</label>
-                    <input type="data" class="form-control" name="data" value="{{dados.data}}">
+                    <label for="data" class="form-label">Data consulta:</label>
+                    <input type="date" class="form-control" name="data" value="{{dados.dt_data}}">
                 </div>
                 <div class="col-4">
                     <label for="hora" class="form-label">Hora:</label>
-                    <input type="text" class="form-control" name="hora" value="{{dados.hora}}">
+                    <input type="text" class="form-control" name="hora" value="{{dados.nr_hora}}">
                 </div>
                 <div class="col-md-7">
                     <label for="medico" class="form-label">Médico:</label>
-                    <input type="text" class="form-control" name="medico" value="{{dados.medico}}">
+                    <input type="text" class="form-control" name="medico" value="{{dados.nm_medico}}">
                 </div>
                 <div class="col-4">
                     <label for="sala" class="form-label">Sala:</label>
-                    <input type="text" class="form-control" name="sala" value="{{dados.sala}}">
+                    <input type="text" class="form-control" name="sala" value="{{dados.nm_sala}}">
+                </div>
+                <div class="col-4">
+                    <label for="contato" class="form-label">Contato paciente:</label>
+                    <input type="text" class="form-control" name="contato" value="{{dados.nm_telefone}}">
+                </div>
+                <div class="col-md-7">
+                    <label for="endereco" class="form-label">Endereço paciente:</label>
+                    <input type="text" class="form-control" name="endereco" value="{{dados.nm_endereco}}">
+                </div>
+                <div class="col-4">
+                    <label for="nascimento" class="form-label">Data nascimento:</label>
+                    <input type="text" class="form-control" name="nascimento" value="{{dados.dt_nascimento}}" readonly>
                 </div>
                 <br>
                 <div class="col-md-12">
-                    <a href="/form-agenda/excluir/{{dados.id}}" class="btn btn-danger" id="link"><span>
+                    <a href="/form-agenda/excluir/{{dados.nr_sequencia}}" class="btn btn-danger" id="link"><span>
                             <ion-icon name="trash"></ion-icon>
                         </span> Excluir</a>
                     <button type="submit" class="btn btn-warning" id="link"><span>

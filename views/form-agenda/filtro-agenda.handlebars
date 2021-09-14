@@ -1,5 +1,4 @@
 <h1>Pesquisa realizada pelo filtro</h1>
-
 <hr>
 <main>
     <div class="container">
@@ -13,9 +12,6 @@
                         <th>Telefone</th>
                         <th>Data nascimento</th>
                         <th>E-mail</th>
-                        <th>Peso(kg)</th>
-                        <th>Altura(m)</th>
-                        <th>IMC</th>
                     </tr>
                 </thead>
                 <tbody class="container">
@@ -29,25 +25,21 @@
                         <td>{{nm_telefone}}</td>
                         <td>{{dt_nascimento}}</td>
                         <td>{{nm_email}}</td>
-                        <td>{{nr_peso}}</td>
-                        <td>{{nm_altura}}</td>
-                        <td>{{nm_imc}}</td>
-                        <td><a href="editar/{{nr_sequencia}}"><button class="btn btn-success"><span>
+                        <td><a
+                                href="selecionar-cliente/{{nm_cliente}}/{{nr_sequencia}}/{{nm_telefone}}/{{nm_endereco}}/{{dt_nascimento}}">
+                                <button class="btn btn-success"><span>
                                         <ion-icon name="information-circle"></ion-icon>
-                                    </span> Ver</button></a>
+                                    </span> Selecionar</button></a>
                         </td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
             <hr>
-            <a href="/form-pacient/cad-paciente"><button id="link" class="btn btn-primary"><span>
-                        <ion-icon name="person-add"></ion-icon>
-                    </span>Novo</button></a>
-            <a href="/form-pacient"><button id="link" class="btn btn-secondary"><span>
+            <strong><span class="totalCliente">Total de clientes {{total_agenda}}</span></strong>
+            <a href="/form-agenda/cad-agenda" class="xx"><button id="link" class="btn btn-secondary"><span>
                         <ion-icon name="funnel"></ion-icon>
                     </span>Reset</button></a>
-            <strong><span class="totalCliente">Total de clientes {{total_paciente}}</span></strong>
         </section>
     </div>
 </main>

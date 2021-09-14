@@ -1,87 +1,90 @@
 //Carregando módulos
 const express = require("express");
 const router = express.Router();
-const fetch = require("node-fetch");
+const db = require("../../models/SQLAgenda/consultAgenda");
 
 //Rotas
-/*
-router.get('/', function(req, res){ //LISTAR TODAS AS AGENDA
-    fetch('http://localhost:3000/agenda', {method: 'GET'})
-    .then(resposta => resposta.json())
-    .then(resposta => res.render('form-agenda/lista-agenda',  {dados:resposta}))
+router.get('/', function(req, res) {
+    (async () => {
+        const total_agenda = await db.agendaTotal()
+        await db.selectAgenda()
+        .then(agenda => res.render('form-agenda/lista-agenda', {dados:agenda, total_agenda}))
+    })();
 });
 
-router.get('/cad-agenda', function(req, res){ //ROTA PARA IR A TELA DE CADASTRO DE UMA NOVA AGENDA
-    res.render('form-agenda/registrar-agenda');
+router.post('/', function(req, res) {
+    (async () => {
+        let nome_paciente = req.body.nome;
+        const total_agenda = await db.selectTotalAgendaFilter(nome_paciente)
+        await db.selectPatientName(nome_paciente)
+        .then(resul_agenda => res.render('form-agenda/lista-agenda', {dados:resul_agenda, total_agenda}));
+    })();
 });
 
-router.post('/cad-novo/agenda', function(req, res){ // ROTA PARA CADASTRAR NOVA AGENDA
-    let erro = [];
-    let paciente = req.body.paciente;
-    let data  = req.body.data;
-    let hora = req.body.hora;
-    let medico = req.body.medico;
-    let sala = req.body.sala;
-    const id = Math.random().toString(32).substr(2, 9);
+router.get('/cad-agenda', function(req, res) {
+    res.render('form-agenda/registrar-agenda')
+});
 
-    if(!paciente || !data || !medico){
-       erro.push({texto: "OS campos paciente, data, e medico, são obrigatórios!"});
-    }
-    if(erro.length > 0){
-        res.render('form-agenda/registrar-agenda', {erros: erro});
-    }else{
-        let dados = {
-            'id': id,
-            'paciente':paciente,
-            'data':data,
-            'hora':hora,
-            'medico':medico,
-            'sala':sala,
+router.post('/filtro-pessoa', function(req, res) {
+    (async () => {
+        let nome_paciente = req.body.nome;
+        const total_agenda = await db.selectTotalAgendaFilter(nome_paciente)
+        await db.pesquisaClient(nome_paciente)
+        .then(resul_agenda => res.render('form-agenda/filtro-agenda', {dados:resul_agenda, total_agenda}));
+    })();
+});
+
+router.get('/selecionar-cliente/:nome?/:id?/:contato?/:endereco?/:nascimento?', function(req, res) {
+    const nome_cliente = req.params.nome;
+    const nr_sequencia = req.params.id;
+    const nm_contato = req.params.contato;
+    const nm_endereco = req.params.endereco;
+    const dt_nascimento = req.params.nascimento;
+    res.render('form-agenda/registrar-agenda', {nome_cliente, nr_sequencia, nm_contato, nm_endereco, dt_nascimento});
+});
+
+router.post('/cad-novo/agenda', function(req, res) {
+    (async () => {
+        const dados = {
+            'nm_paciente': req.body.id,
+            'nm_contato': req.body.contato,
+            'nm_endereco': req.body.endereco,
+            'nr_idade': req.body.idade,
+            'dt_data': req.body.data,
+            'nr_hora': req.body.hora,
+            'nm_sala': req.body.sala,
+            'dt_nascimento': req.body.nascimento,
+            'nm_medico': req.body.medico
+        }
+        await db.registerAgenda(dados);
+        res.redirect('/form-agenda')
+    })();
+});
+
+router.get('/editar/:id', function(req, res) {  
+    (async () => {
+        let id = req.params.id;
+        const [agenda] = await db.selectAgendaID([id]);
+        res.render('form-agenda/editar-agenda', {dados:agenda});
+    })();
+});
+
+router.post('/editar-agenda', function(req, res) {
+    (async () =>{
+        const id = req.body.id;
+        const dados = {
+            'nm_paciente': req.body.paciente,
+            'dt_data': req.body.data,
+            'nr_hora': req.body.hora,
+            'nm_sala': req.body.sala,
+            'nm_medico': req.body.medico,
+            'nm_contato': req.body.contato,
+            'nm_endereco': req.body.endereco,
+            'dt_nascimento': req.body.nascimento
         };
-        fetch('http://localhost:3000/agenda', {
-            method:'POST',
-            body:JSON.stringify(dados),
-            headers:{'Content-Type' : 'application/json'}
-        }).then(res.redirect('/form-agenda'));
-    }
+        await db.editAgenda(id, dados);
+        res.redirect('/form-agenda')
+    })();
 });
-
-router.get('/editar/:id', function(req, res){ //ROTA PARA SELECIOANR UM CLIENTE PELO ID
-    let id = req.params.id;
-
-    fetch('http://localhost:3000/agenda/'+id, {method:'GET'})
-    .then(resposta => resposta.json())
-    .then(resposta => res.render('form-agenda/editar-agenda', {dados:resposta}))
-});
-
-router.post('/editar-agenda', function(req, res){ //ROTA PARA EDITAR O PACIENTE
-    let id = req.body.id;
-    let paciente = req.body.paciente;
-    let data  = req.body.data;
-    let hora = req.body.hora;
-    let medico = req.body.medico;
-    let sala = req.body.sala;
-
-    let dados = {
-        'paciente':paciente,
-        'data':data,
-        'hora':hora,
-        'medico':medico,
-        'sala':sala,
-    };
-
-    fetch('http://localhost:3000/agenda/' + id, {
-        method:'PUT',
-        body:JSON.stringify(dados),
-        headers:{'Content-Type' : 'application/json'}
-    }).then(res.redirect('/form-agenda'));
-});
-
-*/
-
-
-
-
-
 
 module.exports = router;
