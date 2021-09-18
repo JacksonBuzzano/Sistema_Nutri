@@ -1,6 +1,7 @@
-<div class="car_myDiv">
-    <div class="car_myDiv1">
-        <div class="car_myDiv2">
+<h1>Dados do paciente</h1>
+<main>
+    <div class="container">
+        <section class="container">
             <form class="row g-3" action="/form-pacient/editar-paciente" method="POST">
                 <h2>
                     <span>
@@ -8,7 +9,7 @@
                     </span>
                 </h2>
                 <hr>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <label for="id" class="form-label">Sequência:</label>
                     <input type="text" class="form-control" name="id" value="{{dados.nr_sequencia}}" readonly>
                 </div>
@@ -25,19 +26,19 @@
                     <label for="idade" class="form-label">Idade:</label>
                     <input type="text" class="form-control" name="idade" value="{{dados.nr_idade}}">
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <label for="cidade" class="form-label">Cidade:</label>
                     <input type="text" class="form-control" name="cidade" value="{{dados.nm_cidade}}">
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <label for="endereco" class="form-label">Endereço:</label>
                     <input type="text" class="form-control" name="endereco" value="{{dados.nm_endereco}}">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <label for="numero" class="form-label">N°:</label>
                     <input type="text" class="form-control" name="numero" value="{{dados.nr_numero}}">
                 </div>
-                <div class="col-2">
+                <div class="col-3">
                     <label for="estado" class="form-label">Estado:</label>
                     <input type="text" class="form-control" name="estado" value="{{dados.nm_estado}}">
                 </div>
@@ -53,7 +54,7 @@
                     <label for="estado_civil" class="form-label">Estado Cívil:</label>
                     <input type="text" class="form-control" name="estado_civil" value="{{dados.nm_estado_civil}}">
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <label for="altura" class="form-label">Altura:</label>
                     <input type="text" class="form-control" name="altura" value="{{dados.nm_altura}}">
                 </div>
@@ -67,10 +68,11 @@
                 </div>
                 <br>
                 <div class="col-md-12">
-                    <a href="/form-pacient/excluir/{{dados.nr_sequencia}}" class="btn btn-danger" id="link"><span>
+                    <a href="/form-pacient/excluir/{{dados.nr_sequencia}}" class="btn btn-danger" id="link"
+                        onclick="carregarSpinners()"><span>
                             <ion-icon name="trash"></ion-icon>
                         </span> Excluir</a>
-                    <button type="submit" class="btn btn-warning" id="link"><span>
+                    <button type="submit" class="btn btn-warning" id="link" onclick="carregarSpinners()"><span>
                             <ion-icon name="refresh"></ion-icon>
                         </span>Editar</button>
                     <a href="/form-pacient" class="btn btn-primary" id="link"><span>
@@ -78,6 +80,12 @@
                         </span>Voltar</a><br>
                 </div>
             </form>
-        </div>
+        </section>
+    </div>
+</main>
+
+<div class="text-center" id="text-center">
+    <div class="spinner-border" role="status" id="spinner-border">
+        <span class="visually-hidden">Loading...</span>
     </div>
 </div>

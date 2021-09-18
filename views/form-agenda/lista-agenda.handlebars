@@ -1,51 +1,43 @@
 <h1>Lista de Agenda</h1>
 <hr>
 <main>
-    <div class="container">
-        <section class="container">
-            <form class="row g-2 form-agenda" action="/form-agenda" method="POST">
-                <div class="col-md-7">
-                    <br>
-                    <input type="text" class="form-control form-control-lg" name="nome" required>
-                </div>
-                <div class="col-md-4">
-                    <br>
-                    <button class="btn btn-success">
-                        <ion-icon class="icone-pesquisa" name="search"></ion-icon>
-                    </button>
-                </div>
-            </form>
-        </section>
-    </div>
-</main>
-
-<br><br>
-<main>
-    <div class="container">
-        <section class="container">
+    <form class="row g-2 form-geral" action="/form-agenda" method="POST">
+        <div class="col-md-7">
+            <br>
+            <input type="text" class="form-control form-control-lg" name="nome" required>
+        </div>
+        <div class="col-md-4">
+            <br>
+            <button class="btn btn-success" onclick="carregarSpinners()">
+                <ion-icon class="icone-pesquisa" name="search"></ion-icon>
+            </button>
+        </div>
+    </form>
+    <div>
+        <section>
             <table class="table table-hover">
-                <thead>
+                <thead class="thead-table">
                     <tr>
-                        <th>Paciente</th>
-                        <th>Data da consulta</th>
-                        <th>Hora</th>
-                        <th>Médico responsável</th>
-                        <th>Sala</th>
-                        <th>Telefone</th>
+                        <th class="table_agenda">Paciente</th>
+                        <th class="table_agenda">Data da consulta</th>
+                        <th class="table_agenda">Hora</th>
+                        <th class="table_agenda">Médico responsável</th>
+                        <th class="table_agenda">Sala</th>
+                        <th class="table_agenda">Telefone</th>
                     </tr>
                 </thead>
-                <tbody class="container">
+                <tbody>
                     {{#each dados}}
                     <tr>
-                        <td><span>
+                        <td class="table_agenda"><span>
                                 <ion-icon name="person"></ion-icon>
                             </span>{{nm_cliente}}</td>
-                        <td>{{dt_data}}</td>
-                        <td>{{nr_hora}}</td>
-                        <td>{{nm_medico}}</td>
-                        <td>{{nm_sala}}</td>
-                        <td>{{nm_telefone}}</td>
-                        <td><a href="form-agenda/editar/{{nr_sequencia}}"><button class="btn btn-success"><span>
+                        <td class="table_agenda">{{dt_data}}</td>
+                        <td class="table_agenda">{{nr_hora}}</td>
+                        <td class="table_agenda">{{nm_medico}}</td>
+                        <td class="table_agenda">{{nm_sala}}</td>
+                        <td class="table_agenda">{{nm_telefone}}</td>
+                        <td class="table_agenda"><a href="form-agenda/editar/{{nr_sequencia}}"><button class="btn btn-success" onclick="carregarSpinners()"><span>
                                         <ion-icon name="information-circle"></ion-icon>
                                     </span> Ver</button></a>
                         </td>
@@ -53,13 +45,19 @@
                     {{/each}}
                 </tbody>
             </table>
-            <a href="/form-agenda/cad-agenda"><button id="link" class="btn btn-primary"><span>
+            <a href="/form-agenda/cad-agenda"><button id="link" class="btn btn-primary" onclick="carregarSpinners()"><span>
                         <ion-icon name="person-add"></ion-icon>
                     </span>Novo</button></a>
             <strong><span class="totalCliente">Total de agendas {{total_agenda}}</span></strong>
-            <a href="/form-agenda" class="xx"><button id="link" class="btn btn-secondary"><span>
+            <a href="/form-agenda" class="xx"><button id="link" class="btn btn-secondary" onclick="carregarSpinners()"><span>
                         <ion-icon name="funnel"></ion-icon>
                     </span>Reset</button></a>
         </section>
     </div>
 </main>
+
+<div class="text-center" id="text-center">
+    <div class="spinner-border" role="status" id="spinner-border">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>

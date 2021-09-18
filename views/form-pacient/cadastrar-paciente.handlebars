@@ -1,9 +1,8 @@
 <h1>Preencha os campos abaixo</h1>
-
-<div class="car_myDiv">
-    <div class="car_myDiv1">
-        <div class="car_myDiv2">
-            <button class="btn btn-primary" id="voltarPagina" onclick="voltarPagina()"><span>
+<main>
+    <div class="container">
+        <section class="container">
+            <button class="btn btn-primary" id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalPaciente"><span>
                     <ion-icon name="arrow-undo"></ion-icon>
                 </span> Cancelar</button>
             <hr>
@@ -62,11 +61,35 @@
                 </div>
                 <br>
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-success" id="link"><span>
+                    <button type="submit" class="btn btn-success" id="link" onclick="carregarSpinners()"><span>
                             <ion-icon name="person-add"></ion-icon>
                         </span> Cadastrar</button>
                 </div>
             </form>
-        </div>
+        </section>
     </div>
+</main>
+
+<div class="text-center" id="text-center">
+    <div class="spinner-border" role="status" id="spinner-border">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<div class="modal fade" id="modalPaciente" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Atenção!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Se você sair todas as suas alterações não vão ser salvas!</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/form-pacient"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="carregarSpinners()">Sair</button></a>
+        <a href="/form-pacient/cad-paciente"><button type="submit" class="btn btn-primary">Continuar</button></a>
+      </div>
+    </div>
+  </div>
 </div>

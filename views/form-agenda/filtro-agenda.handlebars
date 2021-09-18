@@ -1,35 +1,35 @@
 <h1>Pesquisa realizada pelo filtro</h1>
 <hr>
 <main>
-    <div class="container">
-        <section class="container">
-            <table class="table table-hover myTable">
-                <thead>
+    <div>
+        <section>
+            <table class="table table-hover">
+                <thead class="thead-table">
                     <tr>
-                        <th>Nome</th>
-                        <th>Cidade</th>
-                        <th>Endereço</th>
-                        <th>Telefone</th>
-                        <th>Data nascimento</th>
-                        <th>E-mail</th>
+                        <th class="table_agenda">Nome</th>
+                        <th class="table_agenda">Cidade</th>
+                        <th class="table_agenda">Endereço</th>
+                        <th class="table_agenda">Telefone</th>
+                        <th class="table_agenda">Data nascimento</th>
+                        <th class="table_agenda">E-mail</th>
                     </tr>
                 </thead>
-                <tbody class="container">
+                <tbody>
                     {{#each dados}}
                     <tr>
-                        <td><span>
+                        <td class="table_agenda"><span>
                                 <ion-icon name="person"></ion-icon>
                             </span> {{nm_cliente}}</td>
-                        <td>{{nm_cidade}}</td>
-                        <td>{{nm_endereco}}</td>
-                        <td>{{nm_telefone}}</td>
-                        <td>{{dt_nascimento}}</td>
-                        <td>{{nm_email}}</td>
-                        <td><a
+                        <td class="table_agenda">{{nm_cidade}}</td>
+                        <td class="table_agenda">{{nm_endereco}}</td>
+                        <td class="table_agenda">{{nm_telefone}}</td>
+                        <td class="table_agenda">{{dt_nascimento}}</td>
+                        <td class="table_agenda">{{nm_email}}</td>
+                        <td class="table_agenda"><a
                                 href="selecionar-cliente/{{nm_cliente}}/{{nr_sequencia}}/{{nm_telefone}}/{{nm_endereco}}/{{dt_nascimento}}">
-                                <button class="btn btn-success"><span>
+                                <button class="btn btn-success" onclick="carregarSpinners()"><span>
                                         <ion-icon name="information-circle"></ion-icon>
-                                    </span> Selecionar</button></a>
+                                    </span>Selecionar</button></a>
                         </td>
                     </tr>
                     {{/each}}
@@ -37,9 +37,15 @@
             </table>
             <hr>
             <strong><span class="totalCliente">Total de clientes {{total_agenda}}</span></strong>
-            <a href="/form-agenda/cad-agenda" class="xx"><button id="link" class="btn btn-secondary"><span>
+            <a href="/form-agenda/cad-agenda"><button id="link" class="btn btn-secondary" onclick="carregarSpinners()"><span>
                         <ion-icon name="funnel"></ion-icon>
                     </span>Reset</button></a>
         </section>
     </div>
 </main>
+
+<div class="text-center" id="text-center">
+    <div class="spinner-border" role="status" id="spinner-border">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>

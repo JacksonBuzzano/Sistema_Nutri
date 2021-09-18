@@ -1,6 +1,7 @@
-<div class="car_myDiv">
-    <div class="car_myDiv1">
-        <div class="car_myDiv2">
+<h1>Dados da agenda</h1>
+<main>
+    <div class="container">
+        <section class="container">
             <form class="row g-3" action="/form-agenda/editar-agenda" method="POST">
                 <h2>
                     <span>
@@ -52,7 +53,7 @@
                     <a href="/form-agenda/excluir/{{dados.nr_sequencia}}" class="btn btn-danger" id="link"><span>
                             <ion-icon name="trash"></ion-icon>
                         </span> Excluir</a>
-                    <button type="submit" class="btn btn-warning" id="link"><span>
+                    <button type="submit" class="btn btn-warning" id="link" onclick="carregarSpinners()"><span>
                             <ion-icon name="refresh"></ion-icon>
                         </span>Editar</button>
                     <a href="/form-agenda" class="btn btn-primary" id="link"><span>
@@ -60,6 +61,12 @@
                         </span>Voltar</a><br>
                 </div>
             </form>
-        </div>
+        </section>
+    </div>
+</main>
+
+<div class="text-center" id="text-center">
+    <div class="spinner-border" role="status" id="spinner-border">
+        <span class="visually-hidden">Loading...</span>
     </div>
 </div>
