@@ -87,4 +87,12 @@ router.post('/editar-agenda', function(req, res) {
     })();
 });
 
+router.get('/excluir/:id', function(req, res) {
+    (async () => {
+        const id = req.params.id;
+        await db.deleteAgenda(id);
+        res.redirect('/form-agenda');
+    })();
+})
+
 module.exports = router;

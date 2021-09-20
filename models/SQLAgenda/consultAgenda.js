@@ -65,6 +65,13 @@ async function selectTotalAgendaFilter(values) {
     return rows[0].Total;
 }
 
+async function deleteAgenda(id) {
+    const conn = await connect.connect();
+    const sql = 'DELETE FROM jb_agenda WHERE nr_sequencia=?';
+    const rows = await conn.query(sql, [id]);
+    return rows;
+}
+
 module.exports = {
     selectAgenda,
     agendaTotal,
@@ -73,5 +80,6 @@ module.exports = {
     selectAgendaID, 
     editAgenda,
     selectTotalAgendaFilter, 
-    pesquisaClient
+    pesquisaClient,
+    deleteAgenda
 }

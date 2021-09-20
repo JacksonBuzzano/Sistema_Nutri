@@ -37,11 +37,11 @@
                 </div>
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="text" class="form-control" name="email">
+                    <input type="text" class="form-control" name="email" placeholder="example@example.com"  onkeypress="validateEmail(this)" onblur="validateEmail(this)">
                 </div>
                 <div class="col-md-4">
                     <label for="telefone" class="form-label">Telefone:</label>
-                    <input type="text" class="form-control" name="telefone">
+                    <input type="text" class="form-control" name="telefone" placeholder="(47) 99999-9999" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);">
                 </div>
                 <div class="col-md-4">
                     <label for="estado_civil" class="form-label">Estado Cívil:</label>
