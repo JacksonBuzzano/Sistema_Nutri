@@ -1,0 +1,116 @@
+<h1>Caastro de usuários</h1>
+<main>
+    <div class="container">
+        <section class="container">
+            <button class="btn btn-primary" id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalPaciente"><span>
+                    <ion-icon name="arrow-undo"></ion-icon>
+                </span> Cancelar</button>
+            <hr>
+            <form class="row g-3" action="/form-usuario/cadastrar/novo" method="POST">
+                <div class="col-md-7">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" class="form-control" name="nome" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="data" class="form-label">Data nascimento:</label>
+                    <input type="date" class="form-control" name="data_nascimento" id="data" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="idade" class="form-label">Idade:</label>
+                    <input type="text" class="form-control" name="idade" id="idade" readonly>
+                </div>
+                <div class="col-3">
+                    <label for="cpf" class="form-label">CPF:</label>
+                    <input type="text" class="form-control" name="cpf" required>
+                </div>
+                <div class="col-md-7">
+                    <label for="cidade" class="form-label">Cidade:</label>
+                    <input type="text" class="form-control" name="cidade" required>
+                </div>
+                <div class="col-md-5">
+                    <label for="endereco" class="form-label">Endereço:</label>
+                    <input type="text" class="form-control" name="endereco" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="numero" class="form-label">N°:</label>
+                    <input type="text" class="form-control" name="numero" required>
+                </div>
+                <div class="col-5">
+                    <label for="bairro" class="form-label">Bairro:</label>
+                    <input type="text" class="form-control" name="bairro">
+                </div>
+                <div class="col-md-3">
+                    <label for="telefone" class="form-label">Telefone:</label>
+                    <input type="text" class="form-control" name="telefone" placeholder="(47) 99999-9999" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);">
+                </div>
+                <div class="col-md-4">
+                    <label for="setor" class="form-label">Setor:</label>
+                    <input type="text" class="form-control" name="setor" required>
+                </div>
+                <div class="col-md-5">
+                    <label for="email" class="form-label">E-mail:</label>
+                    <input type="text" class="form-control" name="email" placeholder="example@example.com"  onkeypress="validateEmail(this)" onblur="validateEmail(this)">
+                </div>
+                <div class="col-md-5">
+                    <label for="funcao" class="form-label">função:</label>
+                    <input type="text" class="form-control" name="funcao" required>
+                </div>
+                <div class="col-6">
+                    <label for="ativo" class="form-label">Ativo:</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ativo" id="inlineRadio1" value="S">
+                            <label class="form-check-label" for="inlineRadio1">ativo</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ativo" id="inlineRadio2" value="N">
+                            <label class="form-check-label" for="inlineRadio2">não ativo</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="usuario" class="form-label">Usuario:</label>
+                    <input type="text" class="form-control" name="usuario" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="senha" class="form-label">Senha:</label>
+                    <input type="password" class="form-control" name="senha" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="confirma" class="form-label">Confirmar senha:</label>
+                    <input type="passwors" class="form-control" name="confirma" required>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-success" id="link" onclick="carregarSpinners()"><span>
+                            <ion-icon name="person-add"></ion-icon>
+                        </span> Cadastrar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
+
+<div class="text-center" id="text-center">
+    <div class="spinner-border" role="status" id="spinner-border">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<div class="modal fade" id="modalPaciente" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Atenção!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Se você sair todas as suas alterações não vão ser salvas!</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/form-usuario"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="carregarSpinners()">Sair</button></a>
+        <a href="/form-usuario/cad-usuario"><button type="submit" class="btn btn-primary">Continuar</button></a>
+      </div>
+    </div>
+  </div>
+</div>

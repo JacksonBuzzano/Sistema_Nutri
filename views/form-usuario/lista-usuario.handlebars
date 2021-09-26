@@ -1,0 +1,68 @@
+<h1>Usuários</h1>
+<hr>
+<main>
+    <form class="row g-2 form-geral" action="/form-pacient/pesquisa-cliente" method="POST">
+        <div class="col-md-7">
+            <br>
+            <input type="text" class="form-control form-control-lg" name="nome" required>
+        </div>
+        <div class="col-md-4">
+            <br>
+            <button type="submit" class="btn btn-success" onclick="carregarSpinners()">
+                <ion-icon class="icone-pesquisa" name="search"></ion-icon>
+            </button>
+        </div>
+    </form>
+    <div>
+        <section>
+            <table class="table table-hover">
+                <thead class="thead-table">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Data nascimento</th>
+                        <th>Setor</th>
+                        <th>Função</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Ativo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each dados}}
+                    <tr>
+                        <td><span>
+                                <ion-icon name="person"></ion-icon>
+                            </span> {{nr_codigo}}</td>
+                        <td>{{nm_nome}}</td>
+                        <td>{{nr_cpf}}</td>
+                        <td>{{dt_nascimento}}</td>
+                        <td>{{nm_setor}}</td>
+                        <td>{{nm_funcao}}</td>
+                        <td>{{nm_email}}</td>
+                        <td>{{nm_telefone}}</td>
+                        <td>{{ie_ativo}}</td>
+                        <td><a href="form-usuario/editar/{{nr_codigo}}"><button class="btn btn-success"
+                                    onclick="carregarSpinners()"><span>
+                                        <ion-icon name="information-circle"></ion-icon>
+                                    </span> Ver</button></a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <hr> <a href="/form-usuario/cad-usuario"><button id="link" class="btn btn-primary"
+                    onclick="carregarSpinners()"><span>
+                        <ion-icon name="person-add"></ion-icon>
+                    </span>Novo</button></a>
+            <strong><span class="totalCliente">Total de usuários {{total_usuario}}</span></strong>
+        </section>
+    </div>
+</main>
+
+<div class="text-center" id="text-center">
+    <div class="spinner-border" role="status" id="spinner-border">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
