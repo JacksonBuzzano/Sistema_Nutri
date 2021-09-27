@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-3">
                     <label for="cpf" class="form-label">CPF:</label>
-                    <input type="text" class="form-control" name="cpf" required>
+                    <input type="text" class="form-control" name="cpf"  maxlength="14" placeholder="000.000.000-00" onkeypress="formataCPF(this)"required>
                 </div>
                 <div class="col-md-7">
                     <label for="cidade" class="form-label">Cidade:</label>
@@ -74,15 +74,15 @@
                 </div>
                 <div class="col-md-3">
                     <label for="senha" class="form-label">Senha:</label>
-                    <input type="password" class="form-control" name="senha" required>
+                    <input type="password" class="form-control" name="senha" id="senha" onblur="ativarBotão(this);">
                 </div>
                 <div class="col-md-3">
                     <label for="confirma" class="form-label">Confirmar senha:</label>
-                    <input type="passwors" class="form-control" name="confirma" required>
+                    <input type="password" class="form-control" name="confirma" id="confirma" onblur="confirmaSenha(this);">
                 </div>
                 <br>
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-success" id="link" onclick="carregarSpinners()"><span>
+                    <button type="submit" class="btn btn-success ativar-btn" id="link" onclick="carregarSpinners()" disabled><span>
                             <ion-icon name="person-add"></ion-icon>
                         </span> Cadastrar</button>
                 </div>

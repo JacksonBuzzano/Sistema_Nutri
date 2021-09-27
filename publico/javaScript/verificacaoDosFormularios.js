@@ -49,7 +49,7 @@ function checarEmail() {
   }
 }
 
-/*CASO FOR PAGINA DE LOGIN NÃO MOSTRAR O MENU*/
+//CASO FOR PAGINA DE LOGIN NÃO MOSTRAR O MENU
 const url = window.location.pathname;
 
 if (url === "/login-page") {
@@ -57,7 +57,7 @@ if (url === "/login-page") {
   menu.style.display = "none";
 }
 
-/*CALCULAR IDADE SOZINHO*/
+//CALCULAR IDADE SOZINHO
 document.getElementById("data").addEventListener("change", function () {
   var data = new Date(this.value);
   if (isDate_(this.value) && data.getFullYear() > 1900)
@@ -100,3 +100,68 @@ var isDate_ = function (input) {
   console.log(status);
   return status;
 };
+
+//FORMATAR CAMPO CPF
+function formataCPF(cpf) {
+  const elementoAlvo = cpf;
+  const cpfAtual = cpf.value;
+
+  let cpfAtualizado;
+  cpfAtualizado = cpfAtual.replace(
+    /(\d{3})(\d{3})(\d{3})(\d{2})/,
+    function (regex, argumento1, argumento2, argumento3, argumento4) {
+      return (
+        argumento1 + "." + argumento2 + "." + argumento3 + "-" + argumento4
+      );
+    }
+  );
+  elementoAlvo.value = cpfAtualizado;
+}
+
+//SELECIONAR CAMPO ATIVO CONFORME VEM DO BANCO
+const ie_ativo = document.getElementById("ie_valor").value;
+
+function campoIeAtivo(valor) {
+  valor === "S"
+    ? (document.getElementById("inlineRadio1").checked = true)
+    : (document.getElementById("inlineRadio2").checked = true);
+}
+
+//ATIVAR BOTÃO
+function ativarBotão(valor) {
+  const senha = document.getElementById("senha").value;
+
+  if (senha.length < 5) {
+    valor.style.border = "1px solid red";
+  } else {
+    valor.style.border = "";
+  }
+}
+
+function confirmaSenha(valor) {
+  const senha = document.getElementById("senha").value;
+  const confirma = document.getElementById("confirma").value;
+
+  if (senha != confirma) {
+    valor.style.border = "1px solid red";
+  } else {
+    document.querySelector(".ativar-btn").disabled = false;
+    valor.style.border = "";
+  }
+}
+
+document.querySelector("[name=senha_sim]").onclick = function () {
+  document.querySelector(".ativar-btn").disabled = true;
+  document.getElementById("senha").disabled = false;
+  document.getElementById("confirma").disabled = false;
+  document.getElementById("trocar_senha_nao").checked = false;
+};
+
+document.querySelector("[name=senha_nao]").onclick = function () {
+  document.querySelector(".ativar-btn").disabled = false;
+  document.getElementById("senha").disabled = true;
+  document.getElementById("confirma").disabled = true;
+  document.getElementById("trocar_senha_sim").checked = false;
+};
+
+campoIeAtivo(ie_ativo);

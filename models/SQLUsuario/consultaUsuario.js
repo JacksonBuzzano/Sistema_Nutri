@@ -23,10 +23,31 @@ async function registerUsuario(values) {
         values.nm_setor, values.nm_email, values.nm_funcao, values.ie_ativo];
     const rows = await conn.query(sql, customers);
     return rows;
-}
+};
+
+async function selectUsersID(id) {
+    const conn = await connect.connect();
+    const sql =  'SELECT * FROM jb_usuarios where nr_codigo = ?';
+    const [rows] = await conn.query(sql, [id]);
+    return rows;
+};
+
+async function editUsers(id, values) {
+    const conn = await connect.connect();
+    const sql = 'UPDATE jb_usuarios SET  nm_nome=?, nr_senha=?, nm_nome_usuario=?, dt_nascimento=?, nr_idade=?,' + 
+        'nr_cpf=?, nm_cidade=?, nm_rua=?, nr_numero=?, nm_bairro=?, nm_telefone=?, nm_setor=?,' +
+        'nm_email=?, nm_funcao=?, ie_ativo=? WHERE nr_codigo=?';
+    const customers = [values.nm_nome, values.nr_senha, values.nm_nome_usuario, values.dt_nascimento, values.nr_idade, values.nr_cpf, 
+        values.nm_cidade, values.nm_rua, values.nr_numero, values.nm_bairro, values.nm_telefone, values.nm_setor,
+        values.nm_email, values.nm_funcao, values.ie_ativo, id]
+    const rows = await conn.query(sql, customers);
+    return rows;
+};
 
 module.exports = {
     selectTotalUser,
     selectUsers,
-    registerUsuario
+    registerUsuario,
+    selectUsersID,
+    editUsers
 }

@@ -1,0 +1,125 @@
+<h1>Dados do usuário</h1>
+<main>
+    <div class="container">
+        <section class="container">
+            <form class="row g-3" action="/form-usuario/editar-usuario" method="POST" onSubmit="return(verifica())">
+                <h2>
+                    <span>
+                        <ion-icon name="accessibility"></ion-icon>Usuário: {{dados.nm_nome_usuario}}
+                    </span>
+                </h2>
+                <hr>
+                <div class="col-md-1">
+                    <label for="id" class="form-label">Sequência:</label>
+                    <input type="text" class="form-control" name="id" value="{{dados.nr_codigo}}" readonly>
+                </div>
+               <div class="col-md-7">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" class="form-control" name="nome" value="{{dados.nm_nome_usuario}}" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="data" class="form-label">Data nascimento:</label>
+                    <input type="date" class="form-control" name="data_nascimento" id="data" value="{{dados.dt_nascimento}}" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="idade" class="form-label">Idade:</label>
+                    <input type="text" class="form-control" name="idade" id="idade" value="{{dados.nr_idade}}" readonly>
+                </div>
+                <div class="col-3">
+                    <label for="cpf" class="form-label">CPF:</label>
+                    <input type="text" class="form-control" name="cpf" value="{{dados.nr_cpf}}" maxlength="14" placeholder="000.000.000-00" onkeypress="formataCPF(this)" required>
+                </div>
+                <div class="col-md-7">
+                    <label for="cidade" class="form-label">Cidade:</label>
+                    <input type="text" class="form-control" name="cidade" value="{{dados.nm_cidade}}" required>
+                </div>
+                <div class="col-md-5">
+                    <label for="endereco" class="form-label">Endereço:</label>
+                    <input type="text" class="form-control" name="endereco" value="{{dados.nm_rua}}" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="numero" class="form-label">N°:</label>
+                    <input type="text" class="form-control" name="numero" value="{{dados.nr_numero}}" required>
+                </div>
+                <div class="col-5">
+                    <label for="bairro" class="form-label">Bairro:</label>
+                    <input type="text" class="form-control" name="bairro" value="{{dados.nm_bairro}}">
+                </div>
+                <div class="col-md-3">
+                    <label for="telefone" class="form-label">Telefone:</label>
+                    <input type="text" class="form-control" name="telefone" value="{{dados.nm_telefone}}" placeholder="(47) 99999-9999" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);">
+                </div>
+                <div class="col-md-4">
+                    <label for="setor" class="form-label">Setor:</label>
+                    <input type="text" class="form-control" name="setor" value="{{dados.nm_setor}}" required>
+                </div>
+                <div class="col-md-5">
+                    <label for="email" class="form-label">E-mail:</label>
+                    <input type="text" class="form-control" name="email" value="{{dados.nm_email}}" placeholder="example@example.com"  onkeypress="validateEmail(this)" onblur="validateEmail(this)">
+                </div>
+                <div class="col-md-5">
+                    <label for="funcao" class="form-label">Função:</label>
+                    <input type="text" class="form-control" name="funcao" value="{{dados.nm_funcao}}" required>
+                </div>
+                <div class="col-3">
+                    <label for="ativo" class="form-label">Ativo:</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ativo" id="inlineRadio1" value="S">
+                            <label class="form-check-label" for="inlineRadio1">ativo</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ativo" id="inlineRadio2" value="N">
+                            <label class="form-check-label" for="inlineRadio2">não ativo</label>
+                            <input type="hidden" class="form-control" name="" id="ie_valor" value="{{dados.ie_ativo}}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="usuario" class="form-label">Usuario:</label>
+                    <input type="text" class="form-control"  name="usuario" value="{{dados.nm_nome}}" required>
+                </div>
+                <div class="col-3">
+                    <label for="ativo" class="form-label">Alterar senha:</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="senha_sim" id="trocar_senha_sim" value="S">
+                            <label class="form-check-label" for="inlineRadio2">Sim</label>
+                        </div>
+                        <div class="form-check form-check-inline">  
+                            <input class="form-check-input" type="radio" name="senha_nao" id="trocar_senha_nao" value="N" checked>
+                            <label class="form-check-label" for="inlineRadio2">Não</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="senha" class="form-label">Senha:</label>
+                    <input type="password" class="form-control" name="senha" id="senha" onblur="ativarBotão(this);" value="{{dados.nr_senha}}" disabled>
+                </div>
+                <div class="col-md-3">
+                    <label for="confirma" class="form-label">Confirmar senha:</label>
+                    <input type="password" class="form-control" name="confirma" id="confirma" onblur="confirmaSenha(this);" disabled>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <a href="/form-usuario/excluir/{{dados.nr_codigo}}" class="btn btn-danger"  name="teste" id="link"
+                        onclick="carregarSpinners()"><span>
+                            <ion-icon name="trash"></ion-icon>
+                        </span> Excluir</a>
+                    <button type="submit" class="btn btn-warning ativar-btn" id="link" onclick="carregarSpinners()"><span>
+                            <ion-icon name="refresh"></ion-icon>
+                        </span>Editar</button>
+                    <a href="/form-usuario" class="btn btn-primary" id="link"><span>
+                            <ion-icon name="arrow-undo"></ion-icon>
+                        </span>Voltar</a><br>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
+
+<div class="text-center" id="text-center">
+    <div class="spinner-border" role="status" id="spinner-border">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>

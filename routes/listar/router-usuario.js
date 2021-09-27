@@ -1,7 +1,7 @@
 //Carregando módulos
 const express = require("express");
 const router = express.Router();
-const db = require("../../models/SQLUsuario/consultaUauario");
+const db = require("../../models/SQLUsuario/consultaUsuario");
 
 //Rotas
 router.get('/', function (req, res) {
@@ -37,6 +37,39 @@ router.post('/cadastrar/novo', function(req, res) {
         };
         await db.registerUsuario(dados);
         res.redirect('/form-usuario')
+    })();
+});
+
+router.get('/editar/:id', function(req, res) {
+    let id = req.params.id;
+    (async () => {
+        const [usuario] = await db.selectUsersID([id]);
+        res.render('form-usuario/editar-usuario', {dados:usuario});
+    })();
+});
+
+router.post('/editar-usuario', function(req, res) {
+    (async () => {   
+        const id = req.body.id;     
+        const dados = {
+            'nm_nome': req.body.usuario,
+            'nr_senha': req.body.senha,
+            'nm_nome_usuario': req.body.nome,
+            'dt_nascimento': req.body.data_nascimento,
+            'nr_idade': req.body.idade,
+            'nr_cpf': req.body.cpf,
+            'nm_cidade': req.body.cidade,
+            'nm_rua': req.body.endereco,
+            'nr_numero': req.body.numero,
+            'nm_bairro': req.body.bairro,
+            'nm_telefone': req.body.telefone,
+            'nm_setor': req.body.setor,
+            'nm_email': req.body.email,
+            'nm_funcao': req.body.funcao,
+            'ie_ativo': req.body.ativo
+        };
+            db.editUsers(id, dados);
+            res.redirect('/form-usuario');
     })();
 });
 
