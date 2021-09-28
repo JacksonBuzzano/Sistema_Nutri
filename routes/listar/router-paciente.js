@@ -15,8 +15,12 @@ router.get('/', function(req, res) {
 router.post('/pesquisa-cliente', function(req, res) {
     (async () => {
         let nome_paciente = req.body.nome;
+        let nome_cidade = req.body.cidade;
+        let dt_data = req.body.data;
+
+        console.log(dt_data)
         const total_paciente = await db.selectTotalPatientsFilter(nome_paciente);
-        await db.selectPatientName(nome_paciente)
+        await db.selectPatientName(nome_paciente, nome_cidade)
         .then(resul_paciente => res.render('form-pacient/filtro-paciente', {dados:resul_paciente, total_paciente}));
     })();
 });

@@ -9,7 +9,7 @@ body{
 /*estilizando o MAIN, Formulários,HR, H1, todos num geral*/
 hr{
 	border: 2px solid;
-    margin: 30px 0px 75px 0px; 
+    margin: 20px 0px 50px 0px; 
 }
 
 .icone-pesquisa{
@@ -198,6 +198,13 @@ h5{
     align-items: center;
 }
 
+.modal-filtro{
+    background-color: #0013ba;
+}
+
+.btn-close{
+    background-color: #bfbfbf;
+}
 /*ESTILIZANDO PÁGINA DE LOGIN*/
 .conteudo{
     width: 100%;

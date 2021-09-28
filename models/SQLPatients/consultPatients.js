@@ -18,9 +18,9 @@ async function selectPatient() {
     return rows;
 };
 
-async function selectPatientName(values) {
+async function selectPatientName(nome, cidade) {
     const conn = await connect.connect();
-    const sql = 'SELECT * FROM jb_cliente WHERE nm_cliente LIKE "' + values + '%"';
+    const sql = 'SELECT * FROM jb_cliente WHERE nm_cidade LIKE "' + cidade + '%" AND nm_cliente LIKE "' + nome + '%"';
     const [rows] = await conn.query(sql);
     return rows;
 }
