@@ -25,9 +25,9 @@ async function selectPatientName(nome, cidade) {
     return rows;
 }
 
-async function selectTotalPatientsFilter(values) {
+async function selectTotalPatientsFilter(values, cidade) {
     const conn = await connect.connect();
-    const sql = 'SELECT COUNT(*) AS Total FROM jb_cliente WHERE nm_cliente LIKE "' + values + '%"';
+    const sql = 'SELECT COUNT(*) AS Total FROM jb_cliente WHERE nm_cliente LIKE "' + values + '%" AND nm_cidade LIKE "' + cidade + '%"';
     const [rows] = await conn.query(sql);
     return rows[0].Total;
 }

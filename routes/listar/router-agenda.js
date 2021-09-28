@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../../models/SQLAgenda/consultAgenda");
+const db_paciente = require("../../models/SQLPatients/consultPatients")
 
 //Rotas
 router.get('/', function(req, res) {
@@ -15,8 +16,9 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
     (async () => {
         let nome_paciente = req.body.nome;
-        const total_agenda = await db.selectTotalAgendaFilter(nome_paciente)
-        await db.selectPatientName(nome_paciente)
+        let nome_medico = req.body.medico;
+        const total_agenda = await db.selectTotalAgendaFilter(nome_paciente, nome_medico)
+        await db.selectPatientName(nome_paciente, nome_medico)
         .then(resul_agenda => res.render('form-agenda/lista-agenda', {dados:resul_agenda, total_agenda}));
     })();
 });
@@ -28,7 +30,7 @@ router.get('/cad-agenda', function(req, res) {
 router.post('/filtro-pessoa', function(req, res) {
     (async () => {
         let nome_paciente = req.body.nome;
-        const total_agenda = await db.selectTotalAgendaFilter(nome_paciente)
+        const total_agenda = await db_paciente.selectTotalPatientsFilter(nome_paciente)
         await db.pesquisaClient(nome_paciente)
         .then(resul_agenda => res.render('form-agenda/filtro-agenda', {dados:resul_agenda, total_agenda}));
     })();
