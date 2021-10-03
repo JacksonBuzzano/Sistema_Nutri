@@ -1,59 +1,9 @@
-.loading{
-    background: rgb(123,123,129);
-    background: linear-gradient(85deg, rgba(123,123,129,1) 26%, rgba(216,216,218,1) 97%);
-}
-
-.erro-pai{
-    margin-top: 10%;
+.erro-alert{
     width: 100%;
-    height: 50%;
-}
-.erro-paci{
-    margin-left: auto;
-    margin-right: auto; 
-    width: 70%;
-    height: 50%;
+    height: 100%;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    display: none;
 }
 
-.erro-paci-1{
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    height: 40%;
-}
-
-.erro-paci-2{
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-    height: 30%;
-}
-
-.erro-h1{
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Roboto, Oxygen, Ubuntu, Cantarell;
-    text-align: center;
-}
-
-.erro-h2{
-    font-size: 30px;
-    font-family: Roboto, Oxygen, Ubuntu, Cantarell;
-    text-align: center;
-}
-
-.erro-h3{
-    font-size: 25px;
-    font-family: Roboto, Oxygen, Ubuntu, Cantarell;
-    text-align: center;    
-}
-
-.botao-erro{
-    text-decoration: none;
-    cursor: pointer;
-    background-color: #3306d4;
-    padding: 7px;
-    color: azure;
-    font-size: 22px;
-    border-radius: 20px;
-}

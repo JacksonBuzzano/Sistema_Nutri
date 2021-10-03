@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
         const total_paciente = await db.selectTotalPatients()
          await db.selectPatient()
         .then(clientes => res.render('form-pacient/lista-paciente',  {dados:clientes, total_paciente}))
-        .catch(erro =>  res.render('form-pacient/lista-paciente'));
+        .catch(erro =>  res.render('form-pacient/lista-paciente', {erro}));
     })();
 });  
 
@@ -21,7 +21,7 @@ router.post('/pesquisa-cliente', function(req, res) {
         const total_paciente = await db.selectTotalPatientsFilter(nome_paciente, nome_cidade);
         await db.selectPatientName(nome_paciente, nome_cidade)
         .then(resul_paciente => res.render('form-pacient/filtro-paciente', {dados:resul_paciente, total_paciente}))
-        .catch(erro => res.render('form-pacient/erro-pacient'));
+        .catch(erro => res.render('form-pacient/filtro-paciente'));
     })();
 });
 

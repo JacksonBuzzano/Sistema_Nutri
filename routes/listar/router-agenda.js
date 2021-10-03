@@ -10,6 +10,7 @@ router.get('/', function(req, res) {
         const total_agenda = await db.agendaTotal()
         await db.selectAgenda()
         .then(agenda => res.render('form-agenda/lista-agenda', {dados:agenda, total_agenda}))
+        .catch(erro =>  res.render('form-agenda/lista-agenda', {erro}));
     })();
 });
 
@@ -19,7 +20,8 @@ router.post('/', function(req, res) {
         let nome_medico = req.body.medico;
         const total_agenda = await db.selectTotalAgendaFilter(nome_paciente, nome_medico)
         await db.selectPatientName(nome_paciente, nome_medico)
-        .then(resul_agenda => res.render('form-agenda/lista-agenda', {dados:resul_agenda, total_agenda}));
+        .then(resul_agenda => res.render('form-agenda/lista-agenda', {dados:resul_agenda, total_agenda}))
+        .catch(erro => res.render('form-agenda/lista-agenda', {erro}));
     })();
 });
 
@@ -32,7 +34,8 @@ router.post('/filtro-pessoa', function(req, res) {
         let nome_paciente = req.body.nome;
         const total_agenda = await db_paciente.selectTotalPatientsFilter(nome_paciente)
         await db.pesquisaClient(nome_paciente)
-        .then(resul_agenda => res.render('form-agenda/filtro-agenda', {dados:resul_agenda, total_agenda}));
+        .then(resul_agenda => res.render('form-agenda/filtro-agenda', {dados:resul_agenda, total_agenda}))
+        .catch(erro => res.render('form-agenda/filtro-agenda', {erro}));
     })();
 });
 

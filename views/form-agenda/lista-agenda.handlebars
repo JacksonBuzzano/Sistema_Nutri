@@ -4,6 +4,16 @@
     <svg id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalPaciente" xmlns="http://www.w3.org/2000/svg" width="26" height="26" color="blue" cursor="pointer" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
         <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
     </svg>
+    <div class="erro-alert" id="erro-alert">
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div><br>
+            Um problema inesparado ocorreu. Aguarde alguns minutos e tente novamente. Caso
+            o problema persista, entre em contato com os <b>administradores do sistema</b> .    
+            <input id="valor-teste" type="hidden" value="{{total_agenda}}">
+        </div>
+    </div>
+    </div>
     <div>
         <section>
             <table class="table table-hover">

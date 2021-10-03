@@ -1,3 +1,14 @@
+function erroAlert(){
+  const teste_alert = document.getElementById("valor-teste");
+  const div_alert = document.getElementById("erro-alert");
+  if(teste_alert.value === undefined || teste_alert.value === "") {
+    div_alert.style.display = "block";
+  }else{
+    div_alert.style.display = "none";
+  }
+}
+erroAlert();
+
 //função pra aparecer a opção de carregando
 function carregarSpinners() {
   const text_center = document.getElementById("text-center");
