@@ -45,15 +45,27 @@
                 </div>
                 <div class="col-md-4">
                     <label for="setor" class="form-label">Setor:</label>
-                    <input type="text" class="form-control" name="setor" required>
+                        <select class="form-select" aria-label="Default select example" id="setor" onblur="valorOptionSetor();">
+                            <option>...</option>
+                            {{#each valor}}
+                            <option value="{{nm_setor}}">{{nm_setor}}</option>
+                            {{/each}}
+                    </select>
+                    <input type="hidden" value="" name="setor" id="option-setor">
                 </div>
                 <div class="col-md-5">
                     <label for="email" class="form-label">E-mail:</label>
                     <input type="text" class="form-control" name="email" placeholder="example@example.com"  onkeypress="validateEmail(this)" onblur="validateEmail(this)">
                 </div>
                 <div class="col-md-5">
-                    <label for="funcao" class="form-label">função:</label>
-                    <input type="text" class="form-control" name="funcao" required>
+                    <label for="funcao" class="form-label">Função:</label>
+                    <select class="form-select" aria-label="Default select example" id="funcao" onblur="valorOptionFuncao();">
+                        <option>...</option>
+                        {{#each dados}}
+                        <option value="{{nm_funcao}}">{{nm_funcao}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="hidden" value="" name="funcao" id="option-funcao">
                 </div>
                 <div class="col-6">
                     <label for="ativo" class="form-label">Ativo:</label>

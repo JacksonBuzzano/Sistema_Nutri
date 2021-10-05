@@ -8,12 +8,17 @@ router.get('/', function (req, res) {
   (async () => {
     const total_usuario = await db.selectTotalUser();
     await db.selectUsers()
-      .then((usuarios) => res.render('form-usuario/lista-usuario', { dados: usuarios, total_usuario }));
+      .then((usuarios) => res.render('form-usuario/lista-usuario', { dados: usuarios, total_usuario }))
+      .catch(erro => res.render('form-usuario/lista-usuario', {erro}));
   })();
 });
 
 router.get('/cad-usuario', function(req, res) {
-    res.render('form-usuario/cadastrar-usuario');
+    (async () => {
+        const [setor_user] = await db.selectUserSetor();
+        await db.selectFuncaoUser()
+        .then((funcao_user) =>  res.render('form-usuario/cadastrar-usuario', {dados:funcao_user, valor:setor_user}));
+    })();
 });
 
 router.post('/cadastrar/novo', function(req, res) {
@@ -70,6 +75,31 @@ router.post('/editar-usuario', function(req, res) {
         };
             db.editUsers(id, dados);
             res.redirect('/form-usuario');
+    })();
+});
+
+router.post('/pesquisa-usuario', function(req, res) {
+    (async () => {
+        let nome_usuario = req.body.nome;
+        let cpf_usuario= req.body.cpf;
+        let setor_usuario = req.body.setor;
+        let funcao_usuario = req.body.funcao;
+        let ativo_usuario = req.body.ativo;
+
+        const total_usuario = await db.selectTotalUserFilter(
+            nome_usuario, 
+            cpf_usuario, 
+            setor_usuario, 
+            funcao_usuario, 
+            ativo_usuario)
+        await db.pesquisarUsuario(
+            nome_usuario, 
+            cpf_usuario, 
+            setor_usuario, 
+            funcao_usuario, 
+            ativo_usuario)
+        .then(resul_usuario => res.render('form-usuario/filtro-usuario', {dados:resul_usuario, total_usuario}))
+        .catch(erro => res.render('form-usuario/filtro-usuario', {erro}));
     })();
 });
 

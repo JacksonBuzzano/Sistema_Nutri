@@ -44,10 +44,41 @@ async function editUsers(id, values) {
     return rows;
 };
 
+async function pesquisarUsuario(nome, cpf, setor, funcao, ativo) {
+    const conn = await connect.connect();
+    const sql = 'SELECT * FROM jb_usuarios WHERE nm_nome LIKE "' + nome + '%"  AND nr_cpf LIKE "' + cpf + '%"' +
+                'AND nm_setor LIKE "' + setor + '%" AND nm_funcao LIKE "' + funcao + '%" AND ie_ativo  LIKE "' + ativo + '%"';
+    const [rows] = await conn.query(sql);
+    return rows;
+}
+
+async function selectTotalUserFilter(nome, cpf, setor, funcao, ativo) {
+    const conn = await connect.connect();
+    const sql = 'SELECT COUNT(*) AS Total FROM jb_usuarios WHERE nm_nome LIKE "' + nome + '%"  AND nr_cpf LIKE "' + cpf + '%"' +
+                'AND nm_setor LIKE "' + setor + '%" AND nm_funcao LIKE "' + funcao + '%" AND ie_ativo LIKE "' + ativo + '%"';
+    const [rows] = await conn.query(sql);
+    return rows[0].Total;
+}
+
+async function selectFuncaoUser() {
+    const conn = await connect.connect();
+    const [rows] = await conn.query('SELECT nm_funcao FROM jb_funcao');
+    return rows;
+}
+async function selectUserSetor() {
+    const conn = await connect.connect();
+    const [rows] = await conn.query('SELECT nm_setor FROM jb_setor');
+    return [rows];
+}
+
 module.exports = {
     selectTotalUser,
     selectUsers,
     registerUsuario,
     selectUsersID,
-    editUsers
+    editUsers, 
+    pesquisarUsuario,
+    selectTotalUserFilter,
+    selectUserSetor,
+    selectFuncaoUser
 }
