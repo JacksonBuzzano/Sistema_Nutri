@@ -1,3 +1,12 @@
+//pegar a url e verificar se é a página é login
+const url = window.location.pathname;
+
+if (url === "/login-page") {
+  const menu = document.getElementById("menu");
+  menu.style.display = "none";
+}
+
+//função para preencher os select das funções e setores
 function valorOptionFuncao() {
   const url = window.location.pathname;
   if (url === "/form-usuario/cad-usuario") {
@@ -9,7 +18,6 @@ function valorOptionFuncao() {
     return false;
   }
 }
-valorOptionFuncao();
 
 function valorOptionSetor() {
   const url = window.location.pathname;
@@ -22,93 +30,11 @@ function valorOptionSetor() {
     return false;
   }
 }
-valorOptionSetor();
-
-function erroAlert() {
-  const teste_alert = document.getElementById("valor-teste");
-  const div_alert = document.getElementById("erro-alert");
-  if (teste_alert.value === undefined || teste_alert.value === "") {
-    div_alert.style.display = "block";
-  } else {
-    div_alert.style.display = "none";
-  }
-}
-erroAlert();
 
 //função pra aparecer a opção de carregando
 function carregarSpinners() {
   const text_center = document.getElementById("text-center");
   text_center.style.display = "block";
-}
-//FORMATAÇÃO DO TELEFONE
-function mask(o, f) {
-  setTimeout(function () {
-    var v = mphone(o.value);
-    if (v != o.value) {
-      o.value = v;
-    }
-  }, 1);
-}
-
-function mphone(v) {
-  var r = v.replace(/\D/g, "");
-  r = r.replace(/^0/, "");
-  if (r.length > 10) {
-    r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
-  } else if (r.length > 5) {
-    r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
-  } else if (r.length > 2) {
-    r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
-  } else {
-    r = r.replace(/^(\d*)/, "($1");
-  }
-  return r;
-}
-//FORMATAÇÃO DO EMAIL
-function verifica() {
-  if (document.forms[0].email.value.length == 0) {
-    alert("Por favor, informe o seu EMAIL.");
-    document.frmEnvia.email.focus();
-    return false;
-  } else {
-    return true;
-  }
-}
-
-function checarEmail() {
-  if (
-    document.forms[0].email.value == "" ||
-    document.forms[0].email.value.indexOf("@") == -1 ||
-    document.forms[0].email.value.indexOf(".") == -1
-  ) {
-    alert("Por favor, informe um E-MAIL válido!");
-    return false;
-  }
-}
-
-//CASO FOR PAGINA DE LOGIN NÃO MOSTRAR O MENU
-const url = window.location.pathname;
-
-if (url === "/login-page") {
-  const menu = document.getElementById("menu");
-  menu.style.display = "none";
-}
-
-//FORMATAR CAMPO CPF
-function formataCPF(cpf) {
-  const elementoAlvo = cpf;
-  const cpfAtual = cpf.value;
-
-  let cpfAtualizado;
-  cpfAtualizado = cpfAtual.replace(
-    /(\d{3})(\d{3})(\d{3})(\d{2})/,
-    function (regex, argumento1, argumento2, argumento3, argumento4) {
-      return (
-        argumento1 + "." + argumento2 + "." + argumento3 + "-" + argumento4
-      );
-    }
-  );
-  elementoAlvo.value = cpfAtualizado;
 }
 
 //ATIVAR BOTÃO
@@ -147,3 +73,19 @@ document.querySelector("[name=senha_nao]").onclick = function () {
   document.getElementById("confirma").disabled = true;
   document.getElementById("trocar_senha_sim").checked = false;
 };
+
+//função alert caso der erro nas pesquisas
+function erroAlert() {
+  const teste_alert = document.getElementById("valor-teste").value;
+  const div_alert = document.getElementById("erro-alert");
+  if (teste_alert === undefined || teste_alert === "") {
+    div_alert.style.display = "block";
+  } else {
+    div_alert.style.display = "none";
+  }
+}
+
+//chamada das funções
+valorOptionSetor();
+valorOptionFuncao();
+erroAlert();

@@ -71,6 +71,13 @@ async function selectUserSetor() {
     return [rows];
 }
 
+async function deleteUsuario(id) {
+    const conn = await connect.connect();
+    const sql = 'DELETE FROM jb_usuarios WHERE nr_codigo=?';
+    const [rows] = await conn.query(sql, [id]);
+    return rows;
+}
+
 module.exports = {
     selectTotalUser,
     selectUsers,
@@ -80,5 +87,6 @@ module.exports = {
     pesquisarUsuario,
     selectTotalUserFilter,
     selectUserSetor,
-    selectFuncaoUser
+    selectFuncaoUser,
+    deleteUsuario
 }
