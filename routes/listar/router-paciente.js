@@ -37,6 +37,7 @@ router.post('/cad/novo', function(req, res) {
         const dados = {
             'nm_cliente': req.body.nome,
             'dt_nascimento': req.body.data_nascimento,
+            'nm_cpf': req.body.cpf,
             'nm_endereco': req.body.endereco,
             'nr_numero': req.body.numero,
             'nm_cidade': req.body.cidade,
@@ -73,6 +74,7 @@ router.post('/editar-paciente', function(req, res) {
             'nr_sequencia': id,
             'nm_cliente': req.body.nome,
             'dt_nascimento': req.body.data_nascimento,
+            'nm_cpf': req.body.cpf,
             'nm_endereco': req.body.endereco,
             'nr_numero': req.body.numero,
             'nm_cidade': req.body.cidade,

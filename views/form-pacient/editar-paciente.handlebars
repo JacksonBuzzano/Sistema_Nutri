@@ -22,6 +22,10 @@
                     <input type="text" class="form-control" name="data_nascimento" value="{{dados.dt_nascimento}}"
                         readonly>
                 </div>
+                <div class="col-md-3">
+                    <label for="cpf" class="form-label">CPF:</label>
+                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" placeholder="000.000.000-00" onkeypress="formataCPF(this)" required>
+                </div>
                 <div class="col-md-2">
                     <label for="idade" class="form-label">Idade:</label>
                     <input type="text" class="form-control" name="idade" value="{{dados.nr_idade}}" readonly>

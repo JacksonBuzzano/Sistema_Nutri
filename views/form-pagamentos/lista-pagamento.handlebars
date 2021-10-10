@@ -1,0 +1,126 @@
+<h1>Pagamentos</h1>
+<hr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <main id="x">
+        <svg
+          id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalPaciente" xmlns="http://www.w3.org/2000/svg" width="26"
+          height="26" color="blue" cursor="pointer" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+          <path
+            d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z">
+          </path>
+        </svg>
+        <section>
+            <table class="table table-hover">
+                <thead class="thead-table thead-pag">
+                    <tr>
+                        <th class="table-pag">Nome</th>
+                        <th class="table-pag">Endereço</th>
+                        <th class="table-pag">Telefone</th>
+                        <th class="table-pag">CPF</th>
+                        <th class="table-pag">E-mail</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody-pag"> 
+                    {{#each dados}}              
+                    <tr>
+                        <td class="td_pag"><span>
+                                <ion-icon name="person"></ion-icon>
+                            </span>{{nm_cliente}}</td>
+                        <td class="table-pag">{{nm_endereco}}</td>
+                        <td class="table-pag">{{nm_telefone}}</td>
+                        <td class="table-pag">{{nm_cpf}}</td>
+                        <td class="table-pag">{{nm_email}}</td>
+                        <td class="table-pag"><a href="form-pagamentos/verifica/{{nr_sequencia}}"><button class="btn btn-success" onclick="testando();"
+                                    onclick="carregarSpinners()"><span>
+                                        <ion-icon name="information-circle"></ion-icon>
+                                    </span> Ver</button></a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <hr>
+            <strong><span class="totalCliente">Pagamentos a receber {{total_pagamento}}</span></strong>
+        </section>
+      </main>
+    </div>
+    <div class="col">
+        <main>
+            <section class="container section-pag">
+                <form class="row g-3" action="/form-pagamentos/editar_pagamento/{{nm_paciente}}" method="POST" onSubmit="return(verifica())">
+                    <h2>
+                        <span>
+                            <ion-icon name="accessibility"></ion-icon>Paciente: {{result.nm_cliente}}
+                        </span>
+                    </h2>
+                    <hr>
+                    <div class="col-md-2">
+                        <label for="id" class="form-label">Sequência:</label>
+                        <input type="text" class="form-control" name="id" value="{{result.nr_sequencia}}" readonly>
+                    </div>
+                    <div class="col-md-7">
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" name="nome" value="{{result.nm_cliente}}">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="cpf" class="form-label">CPF:</label>
+                        <input type="text" class="form-control" name="cpf" value="{{result.nm_cpf}}">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="data" class="form-label">Data nascimento:</label>
+                        <input type="text" class="form-control" name="data_nascimento" value="{{result.dt_nascimento}}"
+                            readonly>
+                    </div>
+                    <div class="col-3">
+                        <label for="estado" class="form-label">Estado:</label>
+                        <input type="text" class="form-control" name="estado" value="{{result.nm_estado}}">
+                    </div>
+                    <div class="col-6">
+                        <label for="cidade" class="form-label">Cidade:</label>
+                        <input type="text" class="form-control" name="cidade" value="{{result.nm_cidade}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="endereco" class="form-label">Endereço:</label>
+                        <input type="text" class="form-control" name="endereco" value="{{result.nm_endereco}}">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="telefone" class="form-label">Telefone:</label>
+                        <input type="text" class="form-control" name="telefone" value="{{result.nm_telefone}}" onkeypress="mask(this, mphone);" onblur="mask(this, mphone)">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sala" class="form-label">Sala utilizada:</label>
+                        <input type="text" class="form-control" name="sala" value="{{result.nm_sala}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="medico" class="form-label">Médico responsavél:</label>
+                        <input type="text" class="form-control" name="medico" value="{{result.nm_medico}}">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="email" class="form-label">Valor:</label>
+                        <input type="text" class="form-control" name="email" value="{{result.nm_email}}" placeholder="R$0000,00">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="pagamento" class="form-label">Forma pag:</label>
+                        <input type="text" class="form-control" name="pagamento" value="{{result.nm_pagamento}}">
+                    </div>
+                    <hr>
+                    <div class="col-md-12">
+                        <a href="/form-pacient/excluir/{{dados.nr_sequencia}}" class="btn btn-danger" id="link"
+                            onclick="carregarSpinners()"><span>
+                                <ion-icon name="trash"></ion-icon>
+                            </span> Excluir</a>
+                        <button type="submit" class="btn btn-warning" id="link" onclick="carregarSpinners()"><span>
+                                <ion-icon name="refresh"></ion-icon>
+                            </span>Editar</button>
+                        <a href="/form-pacient" class="btn btn-primary" id="link"><span>
+                                <ion-icon name="arrow-undo"></ion-icon>
+                            </span>Voltar</a><br>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+  </div>
+</div>
