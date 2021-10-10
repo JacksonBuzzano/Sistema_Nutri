@@ -10,6 +10,7 @@ const form_pacientes = require("./routes/listar/router-paciente");
 const form_agenda = require("./routes/listar/router-agenda");
 const login_page = require("./routes/login/router-login");
 const form_usuario = require("./routes/listar/router-usuario");
+const form_pagamentos = require("./routes/listar/router-pagamentos");
 
 
 //Template
@@ -29,6 +30,7 @@ app.use('/login-page', login_page)
 app.use('/form-pacient', form_pacientes);
 app.use('/form-agenda', form_agenda);
 app.use('/form-usuario', form_usuario);
+app.use('/form-pagamentos', form_pagamentos);
 
 //Servidor
 app.listen(8080)
