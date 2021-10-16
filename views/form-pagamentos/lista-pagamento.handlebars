@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <main id="x">
+      <main class="main-pagamento">
         <svg
           id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalPaciente" xmlns="http://www.w3.org/2000/svg" width="26"
           height="26" color="blue" cursor="pointer" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
@@ -11,7 +11,7 @@
             d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z">
           </path>
         </svg>
-        <section>
+        <section id="section-tabela">
             <table class="table table-hover">
                 <thead class="thead-table thead-pag">
                     <tr>
@@ -32,7 +32,7 @@
                         <td class="table-pag">{{nm_telefone}}</td>
                         <td class="table-pag">{{nm_cpf}}</td>
                         <td class="table-pag">{{nm_email}}</td>
-                        <td class="table-pag"><a href="form-pagamentos/verifica/{{nr_sequencia}}"><button class="btn btn-success" onclick="testando();"
+                        <td class="table-pag"><a href="form-pagamentos/verifica/{{nr_sequencia}}" class="xxx"><button class="btn btn-success"
                                     onclick="carregarSpinners()"><span>
                                         <ion-icon name="information-circle"></ion-icon>
                                     </span> Ver</button></a>
@@ -41,15 +41,17 @@
                     {{/each}}
                 </tbody>
             </table>
-            <hr>
             <strong><span class="totalCliente">Pagamentos a receber {{total_pagamento}}</span></strong>
         </section>
       </main>
     </div>
     <div class="col">
-        <main>
-            <section class="container section-pag">
-                <form class="row g-3" action="/form-pagamentos/editar_pagamento/{{nm_paciente}}" method="POST" onSubmit="return(verifica())">
+        <main class="main-pagamento">
+            <div class="text-center" id="texto-pag">
+                <p id="p-pag">Nenhum pagamento selecionado...</p>
+            </div>
+            <section class="container section-pag" id="section-div-pag">
+                <form class="row g-3" action="/form-pagamentos/registrar-pagamento" method="POST">
                     <h2>
                         <span>
                             <ion-icon name="accessibility"></ion-icon>Paciente: {{result.nm_cliente}}
@@ -98,8 +100,8 @@
                         <input type="text" class="form-control" name="medico" value="{{result.nm_medico}}">
                     </div>
                     <div class="col-md-5">
-                        <label for="email" class="form-label">Valor:</label>
-                        <input type="text" class="form-control" name="email" value="{{result.nm_email}}" placeholder="R$0000,00">
+                        <label for="valor" class="form-label">Valor:</label>
+                        <input type="text" class="form-control" name="valor">
                     </div>
                     <div class="col-md-4">
                         <label for="pagamento" class="form-label">Forma pag:</label>
@@ -107,14 +109,10 @@
                     </div>
                     <hr>
                     <div class="col-md-12">
-                        <a href="/form-pacient/excluir/{{dados.nr_sequencia}}" class="btn btn-danger" id="link"
-                            onclick="carregarSpinners()"><span>
-                                <ion-icon name="trash"></ion-icon>
-                            </span> Excluir</a>
-                        <button type="submit" class="btn btn-warning" id="link" onclick="carregarSpinners()"><span>
-                                <ion-icon name="refresh"></ion-icon>
-                            </span>Editar</button>
-                        <a href="/form-pacient" class="btn btn-primary" id="link"><span>
+                        <button type="submit" class="btn btn-success" id="link" onclick="carregarSpinners()"><span>
+                               <ion-icon name="arrow-redo-sharp"></ion-icon>
+                            </span>Receber</button>
+                        <a href="/form-pagamentos" class="btn btn-primary" id="link"><span>
                                 <ion-icon name="arrow-undo"></ion-icon>
                             </span>Voltar</a><br>
                     </div>
@@ -123,4 +121,10 @@
         </main>
     </div>
   </div>
+</div>
+
+<div class="text-center" id="text-center">
+    <div class="spinner-border" role="status" id="spinner-border">
+        <span class="visually-hidden">Loading...</span>
+    </div>
 </div>

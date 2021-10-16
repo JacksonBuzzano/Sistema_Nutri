@@ -7,6 +7,20 @@ body {
 }
 
 /*estilizando página pagamentos  #EFEFEF*/
+#p-pag {
+  align-items: center;
+  text-align: center;
+  color: #d1cdcd;
+}
+#texto-pag {
+  width: 420px;
+  height: 20px;
+  position: fixed;
+  top: 50%;
+  left: 62%;
+  display: inline-block;
+}
+
 .table-pag {
   font-size: 14px;
   font-weight: normal;
@@ -21,9 +35,13 @@ body {
 }
 
 .section-pag {
-  height: 80vh;
+  height: 68vh;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.main-pagamento{
+  height: 76vh;
 }
 
 .section-pag::-webkit-scrollbar {
@@ -225,7 +243,7 @@ tbody::-webkit-scrollbar-thumb {
 #spinner-border {
   position: fixed;
   top: 45%;
-  left: 45%;
+  left: 48.5%;
   width: 4rem;
   height: 4rem;
 }

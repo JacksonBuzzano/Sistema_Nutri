@@ -1,9 +1,17 @@
-//pegar a url e verificar se é a página é login
-const url = window.location.pathname;
+//pegar a url
+const url_login = window.location.pathname;
+const url_pagamento = window.location.pathname;
 
-if (url === "/login-page") {
+if (url_login === "/login-page") {
   const menu = document.getElementById("menu");
   menu.style.display = "none";
+}
+
+if(url_pagamento === '/form-pagamentos'){
+  document.getElementById("section-div-pag").style.display = "none";
+}else {
+  document.getElementById("p-pag").style.display = "none";
+  document.getElementById("texto-pag").style.display = "none";
 }
 
 //função para preencher os select das funções e setores

@@ -18,9 +18,33 @@ router.get('/verifica/:id', function(req, res) {
 
     const id = req.params.id;
     (async () => {
+        const total_pagamento = await db_agenda.agendaTotal();
         const [pagamento] = await db.selectPagamentoID([id]);
         await db.selectAgendaPag()
-        .then((teste) => res.render('form-pagamentos/lista-pagamento', {dados:teste, result:pagamento}));
+        .then((teste) => res.render('form-pagamentos/lista-pagamento', {dados:teste, result:pagamento, total_pagamento}));
+    })();
+});
+
+router.post('/registrar-pagamento', function(req, res){
+    (async ()=> {
+        const id = req.body.id;
+        const dados = {
+            'nr_cod_agendamento': req.body.id,
+            'nm_cliente': req.body.nome,
+            'nm_cpf': req.body.cpf,
+            'dt_nascimento': req.body.data_nascimento,
+            'nm_estado': req.body.estado,
+            'nm_cidade': req.body.cidade,
+            'nm_endereco': req.body.endereco,
+            'nm_telefone': req.body.telefone,
+            'nm_medico_respon': req.body.medico,
+            'nm_sala': req.body.sala,
+            'vl_valor': req.body.valor,
+            'nm_forma_pagamento': req.body.pagamento
+        }
+        await db.realizaPagamento(dados);
+        await db_agenda.deleteAgenda(id)
+        res.redirect('/form-pagamentos');
     })();
 });
 
