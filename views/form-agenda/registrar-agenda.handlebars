@@ -44,6 +44,19 @@
                     <label for="sala" class="form-label">Sala:</label>
                     <input type="text" class="form-control" name="sala" required>
                 </div>
+                <div class="col-4">
+                    <label for="ativo" class="form-label">Agenda ativa:</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ativo" id="inlineRadio1" value="S">
+                            <label class="form-check-label" for="inlineRadio1">ativo</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ativo" id="inlineRadio2" value="N">
+                            <label class="form-check-label" for="inlineRadio2">não ativo</label>
+                        </div>
+                    </div>
+                </div>
                 <br>
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-success" id="link" onclick="carregarSpinners()"><span>

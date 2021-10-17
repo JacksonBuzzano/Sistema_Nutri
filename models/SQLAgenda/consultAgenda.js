@@ -4,20 +4,20 @@ const connect = require('../connection');
 async function selectAgenda() {
     const conn = await connect.connect();
     const [rows] = await conn.query('SELECT b.nr_sequencia, a.nm_cliente, b.dt_data, b.nr_hora, b.nm_medico, ' +
-        'b.nm_sala, a.nm_telefone FROM jb_cliente a, jb_agenda b WHERE a.nr_sequencia = b.nm_paciente');
+        'b.nm_sala, a.nm_telefone FROM jb_cliente a, jb_agenda b WHERE a.nr_sequencia = b.nm_paciente AND b.ie_ativo = "S" ORDER BY a.nm_cliente');
     return rows;
 }
 
 async function agendaTotal() {
     const conn = await connect.connect();
-    const [rows] = await conn.query('SELECT COUNT(*) AS Total FROM jb_agenda');
+    const [rows] = await conn.query('SELECT COUNT(*) AS Total FROM jb_agenda  WHERE ie_ativo = "S"');
     return rows[0].Total;
 }
 
 async function selectPatientName(nome, medico) {
     const conn = await connect.connect();
     const sql = 'SELECT b.nr_sequencia, a.nm_cliente, b.dt_data, b.nr_hora, b.nm_medico, b.nm_sala, a.nm_telefone ' +
-                'FROM jb_cliente a, jb_agenda b where a.nm_cliente LIKE "' + nome + '%" AND b.nm_medico LIKE "' + medico + '%" AND a.nr_sequencia = b.nm_paciente';
+                'FROM jb_cliente a, jb_agenda b where a.nm_cliente LIKE "' + nome + '%" AND b.nm_medico LIKE "' + medico + '%" AND a.nr_sequencia = b.nm_paciente ORDER BY a.nm_cliente';
     const [rows] = await conn.query(sql);
     return rows;
 };
@@ -25,7 +25,7 @@ async function selectPatientName(nome, medico) {
 async function pesquisaClient(values) {
     const conn = await connect.connect();
     const sql = 'SELECT a.nr_sequencia, a.nm_cliente, a.dt_nascimento, a.nm_cidade, a.nm_endereco, a.nm_telefone,' +
-                'a.nm_email FROM jb_cliente a WHERE a.nm_cliente LIKE "' + values + '%"'; 
+                'a.nm_email FROM jb_cliente a WHERE a.nm_cliente LIKE "' + values + '%" ORDER BY nm_cliente'; 
     const [rows] = await conn.query(sql);
     return rows;    
 }
@@ -33,9 +33,9 @@ async function pesquisaClient(values) {
 async function registerAgenda(values) {
     const conn = await connect.connect();
     const sql = 'INSERT INTO jb_agenda (nm_paciente, dt_data, nr_hora, nm_sala, nm_medico, nm_contato, nm_endereco,' +
-                'dt_nascimento) VALUES(?,?,?,?,?,?,?,?)';
+                'dt_nascimento, ie_ativo) VALUES(?,?,?,?,?,?,?,?,?)';
     const customers = [values.nm_paciente, values.dt_data, values.nr_hora, values.nm_sala, values.nm_medico,
-    values.nm_contato, values.nm_endereco, values.dt_nascimento];
+    values.nm_contato, values.nm_endereco, values.dt_nascimento, values.ie_ativo];
     const rows = await conn.query(sql, customers);
     return rows;
 }
@@ -55,6 +55,12 @@ async function editAgenda(id, values) {
     const customers = [values.nm_paciente, values.dt_data, values.nr_hora, values.nm_sala, values.nm_medico,
         values.nm_contato, values.nm_endereco, values.dt_nascimento, id];
     const rows = await conn.query(sql, customers);
+    return rows;
+}
+
+async function editAgendaPag(id, ativo) {
+    const conn = await connect.connect();
+    const rows = await conn.query('UPDATE jb_agenda SET ie_ativo="' + ativo + '" WHERE nr_sequencia="' + id + '"');
     return rows;
 }
 
@@ -82,5 +88,6 @@ module.exports = {
     editAgenda,
     selectTotalAgendaFilter, 
     pesquisaClient,
-    deleteAgenda
+    deleteAgenda,
+    editAgendaPag
 }
