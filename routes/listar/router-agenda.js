@@ -54,12 +54,12 @@ router.post('/cad-novo/agenda', function(req, res) {
             'nm_paciente': req.body.id,
             'nm_contato': req.body.contato,
             'nm_endereco': req.body.endereco,
-            'nr_idade': req.body.idade,
             'dt_data': req.body.data,
             'nr_hora': req.body.hora,
             'nm_sala': req.body.sala,
             'dt_nascimento': req.body.nascimento,
-            'nm_medico': req.body.medico
+            'nm_medico': req.body.medico,
+            'ie_ativo': req.body.ativo
         }
         await db.registerAgenda(dados);
         res.redirect('/form-agenda')

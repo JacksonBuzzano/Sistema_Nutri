@@ -9,7 +9,7 @@ async function selectTotalUser() {
 
 async function selectUsers() {
     const conn = await connect.connect();
-    const [rows] = await conn.query('SELECT * FROM jb_usuarios');
+    const [rows] = await conn.query('SELECT * FROM jb_usuarios ORDER BY nm_nome_usuario');
     return rows;
 };
 

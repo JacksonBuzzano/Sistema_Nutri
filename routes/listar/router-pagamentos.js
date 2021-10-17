@@ -27,6 +27,7 @@ router.get('/verifica/:id', function(req, res) {
 
 router.post('/registrar-pagamento', function(req, res){
     (async ()=> {
+        const ie_ativo = "N";
         const id = req.body.id;
         const dados = {
             'nr_cod_agendamento': req.body.id,
@@ -43,7 +44,8 @@ router.post('/registrar-pagamento', function(req, res){
             'nm_forma_pagamento': req.body.pagamento
         }
         await db.realizaPagamento(dados);
-        await db_agenda.deleteAgenda(id)
+        await db_agenda.editAgendaPag(id, ie_ativo)
+        //await db_agenda.deleteAgenda(id)
         res.redirect('/form-pagamentos');
     })();
 });

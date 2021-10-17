@@ -14,13 +14,13 @@ async function registerPatient(values) {
 
 async function selectPatient() {
     const conn = await connect.connect();
-    const [rows] = await conn.query('SELECT * FROM jb_cliente');
+    const [rows] = await conn.query('SELECT * FROM jb_cliente ORDER BY nm_cliente');
     return rows;
 };
 
 async function selectPatientName(nome, cidade) {
     const conn = await connect.connect();
-    const sql = 'SELECT * FROM jb_cliente WHERE nm_cidade LIKE "' + cidade + '%" AND nm_cliente LIKE "' + nome + '%"';
+    const sql = 'SELECT * FROM jb_cliente WHERE nm_cidade LIKE "' + cidade + '%" AND nm_cliente LIKE "' + nome + '%" ORDER BY nm_cliente';
     const [rows] = await conn.query(sql);
     return rows;
 }
