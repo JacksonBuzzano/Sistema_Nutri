@@ -28,9 +28,16 @@
                     <label for="hora" class="form-label">Hora:</label>
                     <input type="time" class="form-control" name="hora" value="{{dados.nr_hora}}">
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-5">
                     <label for="medico" class="form-label">Médico:</label>
-                    <input type="text" class="form-control" name="medico" value="{{dados.nm_medico}}">
+                    <select class="form-select" aria-label="Default select example" id="medico" onblur="valorOptionMedico();">
+                        <option>{{dados.nm_medico}}</option>
+                        <option>...</option>
+                        {{#each medicos}}
+                        <option value="{{nm_nome_usuario}}">{{nm_nome_usuario}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="hidden" value="" name="medico" id="option-medico">
                 </div>
                 <div class="col-4">
                     <label for="sala" class="form-label">Sala:</label>

@@ -28,9 +28,15 @@
                     <label for="nascimento" class="form-label">Data nascimento do paciente:</label>
                     <input type="text" class="form-control" name="nascimento" value="{{dt_nascimento}}" readonly>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-5">
                     <label for="medico" class="form-label">Médico:</label>
-                    <input type="text" class="form-control" name="medico" required>
+                    <select class="form-select" aria-label="Default select example" id="medico" onblur="valorOptionMedico();">
+                        <option>...</option>
+                        {{#each medicos}}
+                        <option value="{{nm_nome_usuario}}">{{nm_nome_usuario}}</option>
+                        {{/each}}
+                    </select>
+                    <input type="hidden" value="" name="medico" id="option-medico">
                 </div>
                 <div class="col-md-3">
                     <label for="data" class="form-label">Data do agendamento:</label>
@@ -48,7 +54,7 @@
                     <label for="ativo" class="form-label">Agenda ativa:</label>
                     <div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="ativo" id="inlineRadio1" value="S">
+                            <input class="form-check-input" type="radio" name="ativo" id="inlineRadio1" value="S" checked>
                             <label class="form-check-label" for="inlineRadio1">ativo</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -85,11 +91,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Se você sair todas as suas alterações não vão ser salvas!</p>
+        <p>Se você sair todas as suas alterações não vão ser salvas! <br>
+        Deseja realmente sair?</p>
       </div>
       <div class="modal-footer">
         <a href="/form-agenda"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="carregarSpinners()">Sair</button></a>
-        <a href="/form-agenda/cad-agenda"><button type="submit" class="btn btn-primary">Continuar</button></a>
       </div>
     </div>
   </div>

@@ -1,6 +1,13 @@
 //IMPORTAR CONECXÃO
 const connect = require('../connection');
 
+async function selectMedico() {
+    const conn = await connect.connect();
+    const [rows] = await conn.query('SELECT nm_nome_usuario FROM jb_usuarios WHERE nm_funcao = "Médico"');
+    console.log(rows);
+    return rows;
+}
+
 async function selectAgenda() {
     const conn = await connect.connect();
     const [rows] = await conn.query('SELECT b.nr_sequencia, a.nm_cliente, b.dt_data, b.nr_hora, b.nm_medico, ' +
@@ -14,10 +21,10 @@ async function agendaTotal() {
     return rows[0].Total;
 }
 
-async function selectPatientName(nome, medico) {
+async function selectPatientName(nome, medico, ativo) {
     const conn = await connect.connect();
     const sql = 'SELECT b.nr_sequencia, a.nm_cliente, b.dt_data, b.nr_hora, b.nm_medico, b.nm_sala, a.nm_telefone ' +
-                'FROM jb_cliente a, jb_agenda b where a.nm_cliente LIKE "' + nome + '%" AND b.nm_medico LIKE "' + medico + '%" AND a.nr_sequencia = b.nm_paciente ORDER BY a.nm_cliente';
+                'FROM jb_cliente a, jb_agenda b where a.nm_cliente LIKE "' +nome+ '%" AND b.nm_medico LIKE "'+ medico +'%" AND b.ie_ativo LIKE "%'+ ativo +'%" AND a.nr_sequencia = b.nm_paciente ORDER BY a.nm_cliente';
     const [rows] = await conn.query(sql);
     return rows;
 };
@@ -64,10 +71,10 @@ async function editAgendaPag(id, ativo) {
     return rows;
 }
 
-async function selectTotalAgendaFilter(nome, medico) {
+async function selectTotalAgendaFilter(nome, medico, ativo) {
     const conn = await connect.connect();
     const sql = 'SELECT COUNT(*) AS Total FROM jb_cliente a, jb_agenda b WHERE a.nm_cliente LIKE "' + nome + '%"' +
-                'AND b.nm_medico LIKE "' + medico + '%" AND b.nm_paciente = a.nr_sequencia';
+                'AND b.nm_medico LIKE "' + medico + '%" AND b.ie_ativo LIKE "' + ativo + '%" AND b.nm_paciente = a.nr_sequencia';
     const [rows] = await conn.query(sql);
     return rows[0].Total;
 }
@@ -89,5 +96,6 @@ module.exports = {
     selectTotalAgendaFilter, 
     pesquisaClient,
     deleteAgenda,
-    editAgendaPag
+    editAgendaPag,
+    selectMedico
 }
