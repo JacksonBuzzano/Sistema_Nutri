@@ -75,6 +75,19 @@
                     <input type="text" class="form-control" name="nome"><br>
                     <label for="">Médico:</label>
                     <input type="text" class="form-control" name="medico"><br>
+                    <div class="col-4">
+                        <label for="ativo" class="form-label">Agendamentos:</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ativo" id="inlineRadio1" value="S" checked>
+                                <label class="form-check-label" for="inlineRadio1">Pendentes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ativo" id="inlineRadio2" value="">
+                                <label class="form-check-label" for="inlineRadio2">Todos</label>
+                            </div>
+                        </div>
+                    </div><br>
                     <button type="submit" class="btn btn-success" onclick="carregarSpinners()">Pesquisar</button>
                 </form>
             </div>

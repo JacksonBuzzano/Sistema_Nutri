@@ -7,9 +7,9 @@ if (url_login === "/login-page") {
   menu.style.display = "none";
 }
 
-if(url_pagamento === '/form-pagamentos'){
+if (url_pagamento === "/form-pagamentos") {
   document.getElementById("section-div-pag").style.display = "none";
-}else {
+} else {
   document.getElementById("p-pag").style.display = "none";
   document.getElementById("texto-pag").style.display = "none";
 }
@@ -20,6 +20,18 @@ function valorOptionFuncao() {
   if (url === "/form-usuario/cad-usuario") {
     var select = document.getElementById("funcao");
     var option = document.getElementById("option-funcao");
+    var valor = select.options[select.selectedIndex];
+    option.value = valor.value;
+  } else {
+    return false;
+  }
+}
+
+function valorOptionMedico() {
+  const url = window.location.pathname;
+  if ( url != null) {
+    var select = document.getElementById("medico");
+    var option = document.getElementById("option-medico");
     var valor = select.options[select.selectedIndex];
     option.value = valor.value;
   } else {
@@ -96,4 +108,5 @@ function erroAlert() {
 //chamada das funções
 valorOptionSetor();
 valorOptionFuncao();
+valorOptionMedico();
 erroAlert();

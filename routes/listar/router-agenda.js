@@ -16,10 +16,11 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
     (async () => {
-        let nome_paciente = req.body.nome;
-        let nome_medico = req.body.medico;
-        const total_agenda = await db.selectTotalAgendaFilter(nome_paciente, nome_medico)
-        await db.selectPatientName(nome_paciente, nome_medico)
+        const nome_paciente = req.body.nome;
+        const nome_medico = req.body.medico;
+        const ie_ativo = req.body.ativo;
+        const total_agenda = await db.selectTotalAgendaFilter(nome_paciente, nome_medico, ie_ativo)
+        await db.selectPatientName(nome_paciente, nome_medico, ie_ativo)
         .then(resul_agenda => res.render('form-agenda/lista-agenda', {dados:resul_agenda, total_agenda}))
         .catch(erro => res.render('form-agenda/lista-agenda', {erro}));
     })();
@@ -40,12 +41,18 @@ router.post('/filtro-pessoa', function(req, res) {
 });
 
 router.get('/selecionar-cliente/:nome?/:id?/:contato?/:endereco?/:nascimento?', function(req, res) {
-    const nome_cliente = req.params.nome;
-    const nr_sequencia = req.params.id;
-    const nm_contato = req.params.contato;
-    const nm_endereco = req.params.endereco;
-    const dt_nascimento = req.params.nascimento;
-    res.render('form-agenda/registrar-agenda', {nome_cliente, nr_sequencia, nm_contato, nm_endereco, dt_nascimento});
+    (async () => {
+        const nome_cliente = req.params.nome;
+        const nr_sequencia = req.params.id;
+        const nm_contato = req.params.contato;
+        const nm_endereco = req.params.endereco;
+        const dt_nascimento = req.params.nascimento;
+        await db.selectMedico()
+        .then(medico => res.render('form-agenda/registrar-agenda', {nome_cliente, nr_sequencia, nm_contato, 
+            nm_endereco, dt_nascimento, medicos:medico}))
+        .catch(erro => res.render('form-agenda/registrar-agenda', erro));
+    })();
+
 });
 
 router.post('/cad-novo/agenda', function(req, res) {
@@ -58,7 +65,7 @@ router.post('/cad-novo/agenda', function(req, res) {
             'nr_hora': req.body.hora,
             'nm_sala': req.body.sala,
             'dt_nascimento': req.body.nascimento,
-            'nm_medico': req.body.medico,
+            'nm_medico': "Dr.(a) " + req.body.medico,
             'ie_ativo': req.body.ativo
         }
         await db.registerAgenda(dados);
@@ -69,8 +76,10 @@ router.post('/cad-novo/agenda', function(req, res) {
 router.get('/editar/:id', function(req, res) {  
     (async () => {
         let id = req.params.id;
-        const [agenda] = await db.selectAgendaID([id]);
-        res.render('form-agenda/editar-agenda', {dados:agenda});
+        const [agenda] = await db.selectAgendaID([id])
+        await db.selectMedico() 
+        .then(medico => res.render('form-agenda/editar-agenda', {dados:agenda, medicos:medico}))
+        .catch(erro => res.render('form-agenda/editar-agenda', erro));
     })();
 });
 
@@ -82,7 +91,7 @@ router.post('/editar-agenda', function(req, res) {
             'dt_data': req.body.data,
             'nr_hora': req.body.hora,
             'nm_sala': req.body.sala,
-            'nm_medico': req.body.medico,
+            'nm_medico':"Dr.(a) " + req.body.medico,
             'nm_contato': req.body.contato,
             'nm_endereco': req.body.endereco,
             'dt_nascimento': req.body.nascimento
