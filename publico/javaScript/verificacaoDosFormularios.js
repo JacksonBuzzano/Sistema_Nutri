@@ -7,13 +7,6 @@ if (url_login === "/login-page") {
   menu.style.display = "none";
 }
 
-if (url_pagamento === "/form-pagamentos") {
-  document.getElementById("section-div-pag").style.display = "none";
-} else {
-  document.getElementById("p-pag").style.display = "none";
-  document.getElementById("texto-pag").style.display = "none";
-}
-
 //função para preencher os select das funções e setores
 function valorOptionFuncao() {
   const url = window.location.pathname;
@@ -29,7 +22,7 @@ function valorOptionFuncao() {
 
 function valorOptionMedico() {
   const url = window.location.pathname;
-  if ( url != null) {
+  if (url != null) {
     var select = document.getElementById("medico");
     var option = document.getElementById("option-medico");
     var valor = select.options[select.selectedIndex];
@@ -44,6 +37,18 @@ function valorOptionSetor() {
   if (url === "/form-usuario/cad-usuario") {
     var select = document.getElementById("setor");
     var option = document.getElementById("option-setor");
+    var valor = select.options[select.selectedIndex].value;
+    option.value = valor;
+  } else {
+    return false;
+  }
+}
+
+function valorOptionPagamento() {
+  const url = window.location.pathname;
+  if (url === "/form-pagamentos") {
+    var select = document.getElementById("pagamento");
+    var option = document.getElementById("option-pagamento");
     var valor = select.options[select.selectedIndex].value;
     option.value = valor;
   } else {
@@ -109,4 +114,5 @@ function erroAlert() {
 valorOptionSetor();
 valorOptionFuncao();
 valorOptionMedico();
+valorOptionPagamento()
 erroAlert();

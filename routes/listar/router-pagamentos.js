@@ -14,10 +14,9 @@ const db_agenda = require("../../models/SQLAgenda/consultAgenda");
     })();
 });
 
-router.get('/verifica/:id', function(req, res) {
-
-    const id = req.params.id;
+router.post('/', function(req, res) {
     (async () => {
+        const id = req.body.id;
         const total_pagamento = await db_agenda.agendaTotal();
         const [pagamento] = await db.selectPagamentoID([id]);
         await db.selectAgendaPag()
@@ -25,7 +24,7 @@ router.get('/verifica/:id', function(req, res) {
     })();
 });
 
-router.post('/registrar-pagamento', function(req, res){
+router.post('/registrar-pagamento', function(req, res) {
     (async ()=> {
         const ie_ativo = "N";
         const id = req.body.id;
@@ -45,9 +44,18 @@ router.post('/registrar-pagamento', function(req, res){
         }
         await db.realizaPagamento(dados);
         await db_agenda.editAgendaPag(id, ie_ativo)
-        //await db_agenda.deleteAgenda(id)
         res.redirect('/form-pagamentos');
     })();
 });
+
+router.post('/pesquisa-cliente', function(req, res) {  
+    (async () => {
+        const paciente = req.body.nome;
+        const total_pagamento = await db.selectTotalPagFilter(paciente);
+        await db.selectAgendaPagID(paciente)
+        .then(result => res.render('form-pagamentos/lista-pagamento', {dados:result, total_pagamento}))
+        .catch(erro => res.render('form-pagamentos/lista-pagamento'));
+    })();
+})
 
 module.exports = router;

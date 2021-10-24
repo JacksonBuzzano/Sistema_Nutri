@@ -6,13 +6,19 @@ body {
   background-color: #fafafa;
 }
 
-/*estilizando página pagamentos  #EFEFEF*/
+/*estilizando página pagamentos*/
+#section-div-pag{
+  display: block;
+}
+
 #p-pag {
+  display: none;
   align-items: center;
   text-align: center;
   color: #d1cdcd;
 }
 #texto-pag {
+  display: none;
   width: 420px;
   height: 20px;
   position: fixed;
@@ -99,13 +105,14 @@ section {
 }
 
 h1 {
-  margin-top: 70px;
+  margin-top: 55px;
   margin-left: 3.5%;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 /*Estilizando o MENU*/
 nav {
+  height: 48px;
   background-color: #0013ba;
 }
 
