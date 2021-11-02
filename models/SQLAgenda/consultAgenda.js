@@ -11,7 +11,7 @@ async function selectMedico() {
 async function selectAgenda() {
     const conn = await connect.connect();
     const [rows] = await conn.query('SELECT b.nr_sequencia, a.nm_cliente, b.dt_data, b.nr_hora, b.nm_medico, ' +
-        'b.nm_sala, a.nm_telefone FROM jb_cliente a, jb_agenda b WHERE a.nr_sequencia = b.nm_paciente AND b.ie_ativo = "S" ORDER BY a.nm_cliente');
+        'b.nm_sala, a.nm_telefone FROM jb_cliente a, jb_agenda b WHERE a.nr_sequencia = b.nm_paciente AND b.ie_ativo = "S" ORDER BY b.dt_data');
     return rows;
 }
 
