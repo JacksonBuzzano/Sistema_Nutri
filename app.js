@@ -11,6 +11,7 @@ const form_agenda = require("./routes/listar/router-agenda");
 const login_page = require("./routes/login/router-login");
 const form_usuario = require("./routes/listar/router-usuario");
 const form_pagamentos = require("./routes/listar/router-pagamentos");
+const form_prontuario = require("./routes/listar/router-prontuario");
 
 
 //Template
@@ -31,6 +32,7 @@ app.use('/form-pacient', form_pacientes);
 app.use('/form-agenda', form_agenda);
 app.use('/form-usuario', form_usuario);
 app.use('/form-pagamentos', form_pagamentos);
+app.use('/form-prontuario', form_prontuario);
 
 //Servidor
 app.listen(8080)
