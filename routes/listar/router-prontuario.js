@@ -2,10 +2,18 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../../models/SQLProntuario/consultaProntuario");
+const db_consultaAgenda = require("../../models/SQLAgenda/consultAgenda");
 
 //Rotas
 router.get('/', function (req, res) {
-    res.render('form-prontuario/listas-prontuario')
+    (async () =>{
+        const total_prontuario = await db.selectTotalProntuario()
+        const medico = await db_consultaAgenda.selectMedico()
+        await db.listarProntuario()
+        .then(prontuario => res.render('form-prontuario/listas-prontuario',  {dados:prontuario, total_prontuario, medicos:medico}))
+        .catch(erro =>  res.render('form-prontuario/listas-prontuario', {erro}));
+    })();
+
  });
 
 router.get('/cad-prontuario', function(req, res) {
@@ -31,8 +39,7 @@ router.post('/cad-prontuario', function(req, res) {
             'nm_prescricao': req.body.prescricao, 
             'nm_habitos': req.body.habitos, 
             'nm_outras_inform': req.body.informacao
-        }   
-            console.log(dados)
+        };   
         await db.registarProntuario(dados);
         res.redirect('/form-prontuario')
     })();

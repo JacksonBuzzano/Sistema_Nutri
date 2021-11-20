@@ -18,11 +18,11 @@
                 </div>
                 <div class="col-md-3">
                     <label for="cpf" class="form-label">CPF:</label>
-                    <input type="text" class="form-control" name="cpf" value="{{nome_cliente}}">
+                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" placeholder="000.000.000-00" onkeypress="formataCPF(this)" value="{{nome_cliente}}">
                 </div>
                 <div class="col-md-3">
                     <label for="telefone" class="form-label">Telefone:</label>
-                    <input type="text" class="form-control" name="telefone" value="{{nm_contato}}" >
+                    <input type="text" class="form-control" name="telefone"  placeholder="(47) 99999-9999" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" value="{{nm_contato}}" >
                 </div>
                 <div class="col-md-6">
                     <label for="endereco" class="form-label">Endereço:</label>

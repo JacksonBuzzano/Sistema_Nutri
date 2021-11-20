@@ -4,7 +4,6 @@ const connect = require('../connection');
 async function selectMedico() {
     const conn = await connect.connect();
     const [rows] = await conn.query('SELECT nm_nome_usuario FROM jb_usuarios WHERE nm_funcao = "Médico"');
-    console.log(rows);
     return rows;
 }
 
