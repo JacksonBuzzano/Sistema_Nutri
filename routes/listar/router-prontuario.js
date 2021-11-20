@@ -1,11 +1,12 @@
 //Carregando módulos
 const express = require("express");
 const router = express.Router();
+const db = require("../../models/SQLProntuario/consultaProntuario");
 
 //Rotas
 router.get('/', function (req, res) {
     res.render('form-prontuario/listas-prontuario')
-});
+ });
 
 router.get('/cad-prontuario', function(req, res) {
     res.render('form-prontuario/cad-prontuario')
@@ -14,7 +15,7 @@ router.get('/cad-prontuario', function(req, res) {
 router.post('/cad-prontuario', function(req, res) {
     (async () =>{
         const dados = {
-            'nm_paciente': req.body.pacient, 
+            'nm_paciente': req.body.paciente, 
             'nm_cpf': req.body.cpf,
             'nm_telefone': req.body.telefone, 
             'nm_endereco': req.body.endereco, 
@@ -30,14 +31,11 @@ router.post('/cad-prontuario', function(req, res) {
             'nm_prescricao': req.body.prescricao, 
             'nm_habitos': req.body.habitos, 
             'nm_outras_inform': req.body.informacao
-        }
-
+        }   
+            console.log(dados)
         await db.registarProntuario(dados);
         res.redirect('/form-prontuario')
     })();
-
 });
-
-
 
 module.exports = router;
