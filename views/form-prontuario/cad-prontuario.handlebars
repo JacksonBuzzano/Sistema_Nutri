@@ -1,13 +1,13 @@
 <h1>Prontuário do paciente</h1>
 <hr>
 <main>
-    <svg id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalPaciente" xmlns="http://www.w3.org/2000/svg" width="26" height="26" color="blue" cursor="pointer" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+    <svg id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalProntuario" xmlns="http://www.w3.org/2000/svg" width="26" height="26" color="blue" cursor="pointer" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
         <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
     </svg>
     <div class="container">
         <section class="container section-pag">
             <hr>
-            <form class="row g-3" action="/form-agenda/cad-novo/agenda" method="POST">
+            <form class="row g-3" action="/form-prontuario/cad-prontuario" method="POST">
                 <div class="col-md-1">
                     <label for="id" class="form-label">Sequência:</label>
                     <input type="text" class="form-control" name="id" value="{{nr_sequencia}}" readonly>
@@ -17,12 +17,12 @@
                     <input type="text" class="form-control" name="paciente" value="{{nome_cliente}}" readonly required>
                 </div>
                 <div class="col-md-3">
-                    <label for="paciente" class="form-label">CPF:</label>
-                    <input type="text" class="form-control" name="paciente" value="{{nome_cliente}}" readonly required>
+                    <label for="cpf" class="form-label">CPF:</label>
+                    <input type="text" class="form-control" name="cpf" value="{{nome_cliente}}" readonly required>
                 </div>
                 <div class="col-md-3">
-                    <label for="ocntato" class="form-label">Telefone:</label>
-                    <input type="text" class="form-control" name="contato" value="{{nm_contato}}" readonly>
+                    <label for="telefone" class="form-label">Telefone:</label>
+                    <input type="text" class="form-control" name="telefone" value="{{nm_contato}}" readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="endereco" class="form-label">Endereço:</label>
@@ -33,48 +33,48 @@
                     <input type="text" class="form-control" name="nascimento" value="{{dt_nascimento}}" readonly>
                 </div>
                 <div class="col-md-6">
-                    <label for="paciente" class="form-label">Plano de saúde:</label>
-                    <input type="text" class="form-control" name="paciente" value="{{nome_cliente}}" readonly required>
+                    <label for="plano" class="form-label">Plano de saúde:</label>
+                    <input type="text" class="form-control" name="plano" value="{{nome_cliente}}" readonly required>
                 </div>
                 <div class="col-md-5">
                     <label for="medico" class="form-label">Médico:</label>
-                     <input type="text" class="form-control" name="paciente" value="{{nome_cliente}}" readonly required>
+                     <input type="text" class="form-control" name="medico" value="{{nome_cliente}}" readonly required>
                 </div>
                 <div class="col-md-4">
-                    <label for="data" class="form-label">Data da consulta:</label>
-                    <input type="date" class="form-control" name="data" required>
+                    <label for="consulta" class="form-label">Data da consulta:</label>
+                    <input type="date" class="form-control" name="consulta" required>
                 </div>
                 <div class="col-10">
-                    <label for="sala" class="form-label">Histórico de gestações:</label>
-                     <textarea class="form-control" id="floatingTextarea2"  style="resize: none;height: 66px"></textarea>
+                    <label for="historico" class="form-label">Histórico de gestações:</label>
+                     <textarea class="form-control" id="floatingTextarea2" name="historico"  style="resize: none;height: 66px"></textarea>
                 </div>
                 <div class="col-10">
-                    <label for="hora" class="form-label">Históricos de cirurgias:</label>
-                    <textarea class="form-control" id="floatingTextarea2"  style="resize: none;height: 66px"></textarea>
+                    <label for="cirurgias" class="form-label">Históricos de cirurgias:</label>
+                    <textarea class="form-control" id="floatingTextarea2" name="cirurgias" style="resize: none;height: 66px"></textarea>
                 </div>
                 <div class="col-5">
-                    <label for="sala" class="form-label">Medicamentos administrados:</label>
-                    <textarea class="form-control" id="floatingTextarea2"  style="resize: none;height: 66px"></textarea>
+                    <label for="medicamentos" class="form-label">Medicamentos administrados:</label>
+                    <textarea class="form-control" id="floatingTextarea2" name="medicamentos" style="resize: none;height: 66px"></textarea>
                 </div>
                 <div class="col-4">
-                    <label for="sala" class="form-label">Alergias:</label>
-                     <textarea class="form-control" id="floatingTextarea2"  style="resize: none;height: 66px"></textarea>
+                    <label for="alergias" class="form-label">Alergias:</label>
+                     <textarea class="form-control" id="floatingTextarea2" name="alergias" style="resize: none;height: 66px"></textarea>
                 </div>
                 <div class="col-10">
-                    <label for="sala" class="form-label">Sintomas/Queixas:</label>
-                    <textarea class="form-control" id="floatingTextarea2"  style="resize: none;height: 66px"></textarea>
+                    <label for="sintomas" class="form-label">Sintomas/Queixas:</label>
+                    <textarea class="form-control" id="floatingTextarea2" name="sintomas" style="resize: none;height: 66px"></textarea>
                 </div>
                 <div class="col-4">
-                    <label for="sala" class="form-label">Pedidos e prescrições:</label>
-                    <textarea class="form-control" id="floatingTextarea2"  style="resize: none;height: 66px"></textarea>
+                    <label for="presquicao" class="form-label">Pedidos e prescrições:</label>
+                    <textarea class="form-control" id="floatingTextarea2" name="presquicao" style="resize: none;height: 66px"></textarea>
                 </div>
                 <div class="col-5">
-                    <label for="sala" class="form-label">Hábitos de vida:</label>
-                    <textarea class="form-control" id="floatingTextarea2"  style="resize: none;height: 66px"></textarea>
+                    <label for="habitos" class="form-label">Hábitos de vida:</label>
+                    <textarea class="form-control" id="floatingTextarea2" name="habitos" style="resize: none;height: 66px"></textarea>
                 </div>
                 <div class="col-5">
-                    <label for="sala" class="form-label">Outras informações:</label>
-                    <textarea class="form-control" id="floatingTextarea2"  style="resize: none;height: 66px"></textarea>
+                    <label for="informacao" class="form-label">Outras informações:</label>
+                    <textarea class="form-control" id="floatingTextarea2" name="informacao" style="resize: none;height: 66px"></textarea>
                 </div>
                 <br>
                 <hr>
@@ -82,7 +82,7 @@
                     <button type="submit" class="btn btn-success" id="link" onclick="carregarSpinners()"><span>
                             <ion-icon name="person-add"></ion-icon>
                         </span> Cadastrar</button>
-                    <button class="btn btn-primary" id="link" data-bs-toggle="modal" data-bs-target="#modalAgenda"><span>
+                    <button class="btn btn-primary" id="link" data-bs-toggle="modal" data-bs-target="#modalPront"><span>
                             <ion-icon name="arrow-undo"></ion-icon>
                     </span> Cancelar</button>
                 </div>
@@ -97,7 +97,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalPaciente" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+<div class="modal fade" id="modalProntuario" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header modal-filtro">
@@ -107,9 +107,33 @@
                 <form action="/form-agenda/filtro-pessoa" method="POST">
                     <label for="">Nome do paciente:</label>
                     <input type="text" class="form-control" name="nome"><br>
+                    <label for="">CPF:</label>
+                    <input type="text" class="form-control" name="cpf"><br>
+                    <label for="">Data:</label>
+                    <input type="text" class="form-control" name="data"><br>
+                    <label for="">Médico:</label>
+                    <input type="text" class="form-control" name="medico"><br>
                     <button type="submit" class="btn btn-success" onclick="carregarSpinners()">Pesquisar</button>
                 </form>
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modalPront" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Atenção!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Se você sair todas as suas alterações não vão ser salvas! <br>
+        Deseja realmente sair?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/form-prontuario"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="carregarSpinners()">Sair</button></a>
+      </div>
+    </div>
+  </div>
 </div>

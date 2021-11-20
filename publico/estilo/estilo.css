@@ -376,10 +376,8 @@ table::-webkit-scrollbar-thumb {
   font-size: 14px;
   font-weight: normal;
   font-family: Verdana, Arial, Helvetica, sans-serif;
-
   height: 25px;
-  min-width: 280px;
-  max-width: 280px;
+  min-width: auto;
 }
 
 /*

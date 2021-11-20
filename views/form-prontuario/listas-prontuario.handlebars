@@ -1,7 +1,7 @@
 <h1>Prontuário do paciente</h1>
 <hr>
 <main>
-    <svg id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalPaciente" xmlns="http://www.w3.org/2000/svg" width="26" height="26" color="blue" cursor="pointer" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+    <svg id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalProntuario" xmlns="http://www.w3.org/2000/svg" width="26" height="26" color="blue" cursor="pointer" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
         <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
     </svg>
      <div class="erro-alert" id="erro-alert">
@@ -39,7 +39,7 @@
                         <td class="td_prontuario">{{nm_medico}}</td>
                         <td class="td_prontuario">{{nm_sala}}</td>
                         <td class="td_prontuario">{{nm_telefone}}</td>
-                        <td class="td_prontuario"><a href="form-agenda/editar/{{nr_sequencia}}"><button class="btn btn-success" onclick="carregarSpinners()"><span>
+                        <td class="td_prontuario"><a href="form-prontuario/editar/{{nr_sequencia}}"><button class="btn btn-success" onclick="carregarSpinners()"><span>
                                         <ion-icon name="information-circle"></ion-icon>
                                     </span> Ver</button></a>
                         </td>
@@ -47,11 +47,11 @@
                     {{/each}}
                 </tbody>
             </table>
-            <hr> <a href="/form-agenda/cad-agenda"><button id="link" class="btn btn-primary" onclick="carregarSpinners()"><span>
+            <hr> <a href="/form-prontuario/cad-prontuario"><button id="link" class="btn btn-primary" onclick="carregarSpinners()"><span>
                         <ion-icon name="person-add"></ion-icon>
                     </span>Novo</button></a>
-            <strong><span class="totalCliente">Total de agendas {{total_agenda}}</span></strong>
-            <a href="/form-agenda" class="xx"><button id="link" class="btn btn-secondary" onclick="carregarSpinners()"><span>
+            <strong><span class="totalCliente">Total {{total_agenda}}</span></strong>
+            <a href="/form-prontuario" class="xx"><button id="link" class="btn btn-secondary" onclick="carregarSpinners()"><span>
                         <ion-icon name="funnel"></ion-icon>
                     </span>Reset</button></a>
         </section>
@@ -64,7 +64,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalPaciente" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+<div class="modal fade" id="modalProntuario" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header modal-filtro">
@@ -74,6 +74,12 @@
                 <form action="/form-agenda/filtro-pessoa" method="POST">
                     <label for="">Nome do paciente:</label>
                     <input type="text" class="form-control" name="nome"><br>
+                    <label for="">CPF:</label>
+                    <input type="text" class="form-control" name="cpf"><br>
+                    <label for="">Data:</label>
+                    <input type="text" class="form-control" name="data"><br>
+                    <label for="">Médico:</label>
+                    <input type="text" class="form-control" name="medico"><br>
                     <button type="submit" class="btn btn-success" onclick="carregarSpinners()">Pesquisar</button>
                 </form>
             </div>
