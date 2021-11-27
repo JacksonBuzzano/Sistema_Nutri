@@ -16,11 +16,11 @@ router.get('/', function (req, res) {
 
  });
 
-router.get('/cad-prontuario', function(req, res) {
+router.get('/prontuario', function(req, res) {
     res.render('form-prontuario/cad-prontuario')
 });
 
-router.post('/cad-prontuario', function(req, res) {
+router.post('/cadastrar-prontuario', function(req, res) {
     (async () =>{
         const dados = {
             'nm_paciente': req.body.paciente, 

@@ -5,44 +5,44 @@
         <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
     </svg>
     <div class="container">
-        <section class="container section-pag">
+        <section class="container">
             <hr>
-            <form class="row g-3" action="/form-prontuario/cad-prontuario" method="POST">
+            <form class="row g-3" action="/form-prontuario/cadastrar-prontuario" method="POST">
                 <div class="col-md-1">
                     <label for="id" class="form-label">Sequência:</label>
-                    <input type="text" class="form-control" name="id" value="{{nr_sequencia}}" readonly>
+                    <input type="text" class="form-control" name="id"  readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="paciente" class="form-label">Nome paciente:</label>
-                    <input type="text" class="form-control" name="paciente" value="{{nome_cliente}}">
+                    <input type="text" class="form-control" name="paciente" readonly>
                 </div>
                 <div class="col-md-3">
                     <label for="cpf" class="form-label">CPF:</label>
-                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" placeholder="000.000.000-00" onkeypress="formataCPF(this)" value="{{nome_cliente}}">
+                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" placeholder="000.000.000-00" onkeypress="formataCPF(this)" readonly>
                 </div>
                 <div class="col-md-3">
                     <label for="telefone" class="form-label">Telefone:</label>
-                    <input type="text" class="form-control" name="telefone"  placeholder="(47) 99999-9999" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" value="{{nm_contato}}" >
+                    <input type="text" class="form-control" name="telefone"  placeholder="(47) 99999-9999" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);"readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="endereco" class="form-label">Endereço:</label>
-                    <input type="text" class="form-control" name="endereco" value="{{nm_endereco}}" >
+                    <input type="text" class="form-control" name="endereco" readonly>
                 </div>
                 <div class="col-md-4">
                     <label for="nascimento" class="form-label">Data nascimento:</label>
-                    <input type="text" class="form-control" name="nascimento" value="{{dt_nascimento}}" >
+                    <input type="text" class="form-control" name="nascimento" readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="plano" class="form-label">Plano de saúde:</label>
-                    <input type="text" class="form-control" name="plano" value="{{nome_cliente}}" >
+                    <input type="text" class="form-control" name="plano">
                 </div>
                 <div class="col-md-5">
                     <label for="medico" class="form-label">Médico:</label>
-                     <input type="text" class="form-control" name="medico" value="{{nome_cliente}}">
+                     <input type="text" class="form-control" name="medico" readonly>
                 </div>
                 <div class="col-md-4">
                     <label for="consulta" class="form-label">Data da consulta:</label>
-                    <input type="date" class="form-control" name="consulta" >
+                    <input type="date" class="form-control" name="consulta" readonly>
                 </div>
                 <div class="col-10">
                     <label for="historico" class="form-label">Histórico de gestações:</label>
@@ -77,14 +77,13 @@
                     <textarea class="form-control" id="floatingTextarea2" name="informacao" style="resize: none;height: 66px"></textarea>
                 </div>
                 <br>
-                <hr>
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-success" id="link" onclick="carregarSpinners()"><span>
                             <ion-icon name="person-add"></ion-icon>
                         </span> Cadastrar</button>
-                    <button class="btn btn-primary" id="link" data-bs-toggle="modal" data-bs-target="#modalPront"><span>
+                    <a class="btn btn-primary" id="link" data-bs-toggle="modal" data-bs-target="#modalPront"><span>
                             <ion-icon name="arrow-undo"></ion-icon>
-                    </span> Cancelar</button>
+                    </span> Cancelar</a>
                 </div>
             </form>
         </section>
@@ -104,15 +103,34 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/form-agenda/filtro-pessoa" method="POST">
-                    <label for="">Nome do paciente:</label>
-                    <input type="text" class="form-control" name="nome"><br>
-                    <label for="">CPF:</label>
-                    <input type="text" class="form-control" name="cpf"><br>
-                    <label for="">Data:</label>
-                    <input type="text" class="form-control" name="data"><br>
+                <form action="/form-prontuario/filtro-prontuario" method="POST">
+                    <div class="row g-3">
+                        <div class="col">
+                            <label for="">Nome do paciente:</label>
+                            <input type="text" class="form-control" name="nome"><br>
+                        </div>
+                        <div class="col">
+                            <label for="">CPF:</label>
+                            <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" placeholder="000.000.000-00" onkeypress="formataCPF(this)">
+                        </div>
+                    </div>    
+                    <div class="row g-3">
+                        <div class="col">
+                            <label for="">Data inicio:</label>
+                            <input type="date" class="form-control" name="data_inicio"><br>
+                        </div>
+                        <div class="col">
+                            <label for="">Data final:</label>
+                            <input type="date" class="form-control" name="data_final"><br>
+                        </div>
+                    </div>
                     <label for="">Médico:</label>
-                    <input type="text" class="form-control" name="medico"><br>
+                     <select class="form-select" aria-label="Default select example" id="medico" onblur="valorOptionMedico();">
+                        <option>...</option>
+                        {{#each medicos}}
+                        <option value="{{nm_nome_usuario}}">{{nm_nome_usuario}}</option>
+                        {{/each}}
+                    </select><br>
                     <button type="submit" class="btn btn-success" onclick="carregarSpinners()">Pesquisar</button>
                 </form>
             </div>

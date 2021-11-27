@@ -30,7 +30,7 @@ async function selectPatientName(nome, medico, ativo) {
 
 async function pesquisaClient(values) {
     const conn = await connect.connect();
-    const sql = 'SELECT a.nr_sequencia, a.nm_cliente, a.dt_nascimento, a.nm_cidade, a.nm_endereco, a.nm_telefone,' +
+    const sql = 'SELECT a.nr_sequencia, a.nm_cliente, a.dt_nascimento, a.nm_cidade, a.nm_endereco, a.nm_telefone, a.nm_cpf,' +
                 'a.nm_email FROM jb_cliente a WHERE a.nm_cliente LIKE "' + values + '%" ORDER BY nm_cliente'; 
     const [rows] = await conn.query(sql);
     return rows;    
@@ -85,6 +85,17 @@ async function deleteAgenda(id) {
     return rows;
 }
 
+async function inserirProntuário(values, dadosProntuario) {
+    const conn = await connect.connect();
+    const sql = 'INSERT INTO jb_prontuario (nm_paciente, nm_cpf, nm_telefone, nm_endereco, dt_data_nascimento,' +
+        'nm_plano_saude, nm_medico, dt_consulta, nm_historico_gest, nm_historico_cirur, nm_medicamentos, nm_alergia,' + 
+        'nm_sintomas, nm_prescricao, nm_habitos, nm_outras_inform) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    const customers = [dadosProntuario.nm_paciente, values.nm_cpf, values.nm_contato, values.nm_endereco, values.dt_nascimento, null, 
+        values.nm_medico, values.dt_data, null, null, null, null, null, null, null, null];
+    const rows = await conn.query(sql, customers);
+    return rows;
+}
+
 module.exports = {
     selectAgenda,
     agendaTotal,
@@ -96,5 +107,6 @@ module.exports = {
     pesquisaClient,
     deleteAgenda,
     editAgendaPag,
-    selectMedico
+    selectMedico, 
+    inserirProntuário
 }
