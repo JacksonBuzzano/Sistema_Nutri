@@ -45,4 +45,16 @@ router.post('/cadastrar-prontuario', function(req, res) {
     })();
 });
 
+router.get('/editar/:id', function(req, res) {  
+    (async () => {
+        let id = req.params.id;
+        const [prontuario] = await db.selectProntuarioID([id])
+        ///await db.selectMedico() 
+        res.render('form-prontuario/editar-prontuario', {dados:prontuario})
+        //.catch(erro => res.render('form-agenda/editar-rprontuario', erro));
+    })();
+
+    //res.render('form-prontuario/editar-prontuario')
+});
+
 module.exports = router;

@@ -10,71 +10,71 @@
             <form class="row g-3" action="/form-prontuario/cadastrar-prontuario" method="POST">
                 <div class="col-md-1">
                     <label for="id" class="form-label">Sequência:</label>
-                    <input type="text" class="form-control" name="id"  readonly>
+                    <input type="text" class="form-control" name="id" value="{{dados.nr_prontuario}}"  readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="paciente" class="form-label">Nome paciente:</label>
-                    <input type="text" class="form-control" name="paciente" readonly>
+                    <input type="text" class="form-control" name="paciente" value="{{dados.nm_paciente}}" readonly>
                 </div>
                 <div class="col-md-3">
                     <label for="cpf" class="form-label">CPF:</label>
-                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" placeholder="000.000.000-00" onkeypress="formataCPF(this)" readonly>
+                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" placeholder="000.000.000-00" onkeypress="formataCPF(this)" value="{{dados.nm_cpf}}" readonly>
                 </div>
                 <div class="col-md-3">
                     <label for="telefone" class="form-label">Telefone:</label>
-                    <input type="text" class="form-control" name="telefone"  placeholder="(47) 99999-9999" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);"readonly>
+                    <input type="text" class="form-control" name="telefone"  placeholder="(47) 99999-9999" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" value="{{dados.nm_telefone}}" readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="endereco" class="form-label">Endereço:</label>
-                    <input type="text" class="form-control" name="endereco" readonly>
+                    <input type="text" class="form-control" name="endereco" value="{{dados.nm_endereco}}" readonly>
                 </div>
                 <div class="col-md-4">
                     <label for="nascimento" class="form-label">Data nascimento:</label>
-                    <input type="text" class="form-control" name="nascimento" readonly>
+                    <input type="text" class="form-control" name="nascimento" value="{{dados.dt_data_nascimento}}" readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="plano" class="form-label">Plano de saúde:</label>
-                    <input type="text" class="form-control" name="plano">
+                    <input type="text" class="form-control" name="plano" value="{{dados.nm_plano_saude}}">
                 </div>
                 <div class="col-md-5">
                     <label for="medico" class="form-label">Médico:</label>
-                     <input type="text" class="form-control" name="medico" readonly>
+                     <input type="text" class="form-control" name="medico" value="{{dados.nm_medico}}" readonly>
                 </div>
                 <div class="col-md-4">
                     <label for="consulta" class="form-label">Data da consulta:</label>
-                    <input type="date" class="form-control" name="consulta" readonly>
+                    <input type="date" class="form-control" name="consulta" value="{{dados.dt_consulta}}" readonly>
                 </div>
                 <div class="col-10">
                     <label for="historico" class="form-label">Histórico de gestações:</label>
-                     <textarea class="form-control" id="floatingTextarea2" name="historico"  style="resize: none;height: 66px"></textarea>
+                     <textarea class="form-control" id="floatingTextarea2" name="historico"  style="resize: none;height: 66px">{{dados.nm_historico_gest}}</textarea>
                 </div>
                 <div class="col-10">
                     <label for="cirurgias" class="form-label">Históricos de cirurgias:</label>
-                    <textarea class="form-control" id="floatingTextarea2" name="cirurgias" style="resize: none;height: 66px"></textarea>
+                    <textarea class="form-control" id="floatingTextarea2" name="cirurgias" style="resize: none;height: 66px">{{dados.nm_historico_cirur}}</textarea>
                 </div>
                 <div class="col-5">
                     <label for="medicamentos" class="form-label">Medicamentos administrados:</label>
-                    <textarea class="form-control" id="floatingTextarea2" name="medicamentos" style="resize: none;height: 66px"></textarea>
+                    <textarea class="form-control" id="floatingTextarea2" name="medicamentos" style="resize: none;height: 66px">{{dados.nm_medicamentos}}</textarea>
                 </div>
                 <div class="col-4">
                     <label for="alergias" class="form-label">Alergias:</label>
-                     <textarea class="form-control" id="floatingTextarea2" name="alergias" style="resize: none;height: 66px"></textarea>
+                     <textarea class="form-control" id="floatingTextarea2" name="alergias" style="resize: none;height: 66px">{{dados.nm_alergia}}</textarea>
                 </div>
                 <div class="col-10">
                     <label for="sintomas" class="form-label">Sintomas/Queixas:</label>
-                    <textarea class="form-control" id="floatingTextarea2" name="sintomas" style="resize: none;height: 66px"></textarea>
+                    <textarea class="form-control" id="floatingTextarea2" name="sintomas" style="resize: none;height: 66px">{{dados.nm_sintomas}}</textarea>
                 </div>
                 <div class="col-4">
                     <label for="presquicao" class="form-label">Pedidos e prescrições:</label>
-                    <textarea class="form-control" id="floatingTextarea2" name="prescricao" style="resize: none;height: 66px"></textarea>
+                    <textarea class="form-control" id="floatingTextarea2" name="prescricao" style="resize: none;height: 66px">{{dados.nm_prescricao}}</textarea>
                 </div>
                 <div class="col-5">
                     <label for="habitos" class="form-label">Hábitos de vida:</label>
-                    <textarea class="form-control" id="floatingTextarea2" name="habitos" style="resize: none;height: 66px"></textarea>
+                    <textarea class="form-control" id="floatingTextarea2" name="habitos" style="resize: none;height: 66px">{{dados.nm_habitos}}</textarea>
                 </div>
                 <div class="col-5">
                     <label for="informacao" class="form-label">Outras informações:</label>
-                    <textarea class="form-control" id="floatingTextarea2" name="informacao" style="resize: none;height: 66px"></textarea>
+                    <textarea class="form-control" id="floatingTextarea2" name="informacao" style="resize: none;height: 66px">{{dados.nm_outras_inform}}</textarea>
                 </div>
                 <br>
                 <div class="col-md-12">

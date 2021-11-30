@@ -25,8 +25,16 @@ async function selectTotalProntuario() {
     return rows[0].Total;
 }
 
+async function selectProntuarioID(values) {
+    const conn = await connect.connect();
+    const sql = 'SELECT * FROM jb_prontuario a WHERE nr_prontuario = ?';
+    const [rows] = await conn.query(sql, [values]);
+    return rows;
+};
+
 module.exports = {
     registarProntuario,
     listarProntuario,
-    selectTotalProntuario
+    selectTotalProntuario,
+    selectProntuarioID
 }
