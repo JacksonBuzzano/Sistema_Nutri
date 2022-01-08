@@ -20,8 +20,9 @@ router.get('/prontuario', function(req, res) {
     res.render('form-prontuario/cad-prontuario')
 });
 
-router.post('/cadastrar-prontuario', function(req, res) {
+router.post('/editar-prontuario', function(req, res) {
     (async () =>{
+        const id = req.body.id;
         const dados = {
             'nm_paciente': req.body.paciente, 
             'nm_cpf': req.body.cpf,
@@ -39,8 +40,8 @@ router.post('/cadastrar-prontuario', function(req, res) {
             'nm_prescricao': req.body.prescricao, 
             'nm_habitos': req.body.habitos, 
             'nm_outras_inform': req.body.informacao
-        };   
-        await db.registarProntuario(dados);
+        };
+        db.editProntuario(id, dados);
         res.redirect('/form-prontuario')
     })();
 });

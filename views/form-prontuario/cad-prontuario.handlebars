@@ -7,7 +7,7 @@
     <div class="container">
         <section class="container">
             <hr>
-            <form class="row g-3" action="/form-prontuario/editar-prontuario" method="POST">
+            <form class="row g-3" action="/form-prontuario/cadastrar-prontuario" method="POST">
                 <div class="col-md-1">
                     <label for="id" class="form-label">Sequência:</label>
                     <input type="text" class="form-control" name="id" value="{{dados.nr_prontuario}}"  readonly>
@@ -80,7 +80,7 @@
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-success" id="link" onclick="carregarSpinners()"><span>
                             <ion-icon name="person-add"></ion-icon>
-                        </span> Editar</button>
+                        </span> Cadastrar</button>
                     <a class="btn btn-primary" id="link" data-bs-toggle="modal" data-bs-target="#modalPront"><span>
                             <ion-icon name="arrow-undo"></ion-icon>
                     </span> Cancelar</a>
