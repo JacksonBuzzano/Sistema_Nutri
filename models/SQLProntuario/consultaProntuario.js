@@ -31,12 +31,27 @@ async function listarProntuario() {
     return rows;
 }
 
+async function filtroPacienteProntuario(nome, cpf, medico) {
+    const conn = await connect.connect();
+    const sql = 'SELECT a.nm_cliente, a.nm_cpf, a.nm_telefone, a.nm_endereco, a.dt_nascimento, b.dt_data, b.nm_medico FROM jb_cliente a, '+ 
+                'jb_agenda b WHERE a.nm_cliente LIKE "'+ nome +'%" AND a.nr_sequencia = b.nm_paciente AND a.nm_cpf LIKE "'+ cpf +'%" ' + 
+                'AND b.nm_medico LIKE "%'+ medico +'%" ORDER BY a.nm_cliente';
+    const [rows] = await conn.query(sql);
+    return rows;
+}
+
 async function selectTotalProntuario() {
     const conn = await connect.connect();
     const [rows] = await conn.query('SELECT COUNT(*) AS Total FROM jb_prontuario');
     return rows[0].Total;
 }
 
+async function selectTotalFiltro(nome, cpf, medico) {
+    const conn = await connect.connect();
+    const [rows] = await conn.query('SELECT COUNT(*) AS Total FROM jb_cliente a, jb_agenda b WHERE a.nm_cliente LIKE "'+ nome +'%" '+ 
+            'AND a.nr_sequencia = b.nm_paciente AND a.nm_cpf LIKE "%'+ cpf +'%" AND b.nm_medico LIKE "%'+ medico +'%"');
+    return rows[0].Total;
+}
 async function selectProntuarioID(values) {
     const conn = await connect.connect();
     const sql = 'SELECT * FROM jb_prontuario a WHERE nr_prontuario = ?';
@@ -49,5 +64,7 @@ module.exports = {
     listarProntuario,
     selectTotalProntuario,
     selectProntuarioID,
-    editProntuario
+    editProntuario,
+    filtroPacienteProntuario,
+    selectTotalFiltro
 }
