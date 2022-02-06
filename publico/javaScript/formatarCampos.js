@@ -62,6 +62,23 @@ function formataCPF(cpf) {
   elementoAlvo.value = cpfAtualizado;
 }
 
+//formatar campo altura
+function formataAltura(altura) {
+  const reulFinal = altura;
+  const alturaAtual = altura.value;
+
+  let alturaAtualizada;
+  alturaAtualizada = alturaAtual.replace(
+    /(\d{1})(\d{2})/,
+    function (regex, param1, param2) {
+      return (
+        param1 + "." + param2
+      );
+    }
+  );
+  reulFinal.value = alturaAtualizada;
+}
+
 //formatar campo moeda
 String.prototype.reverse = function(){
   return this.split('').reverse().join(''); 

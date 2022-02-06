@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="altura" class="form-label">Altura:</label>
-                    <input type="text" class="form-control" name="altura" value="{{dados.nm_altura}}">
+                    <input type="text" class="form-control" name="altura" value="{{dados.nm_altura}}" maxlength="4" placeholder="1.99" onkeypress="formataAltura(this)">
                 </div>
                 <div class="col-md-3">
                     <label for="peso" class="form-label">Peso:</label>
