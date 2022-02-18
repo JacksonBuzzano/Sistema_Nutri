@@ -96,6 +96,16 @@ async function inserirProntuário(values, dadosProntuario) {
     return rows;
 }
 
+async function editProntuario(id, values, dadosProntuario) {
+    const conn = await connect.connect();
+    const sql = 'UPDATE jb_prontuario SET nm_paciente=?, nm_telefone=?, nm_endereco=?, dt_data_nascimento=?,'+
+                'nm_medico=?, dt_consulta=? WHERE nr_seq_agenda=?';
+    const customers = [dadosProntuario.nm_paciente, values.nm_contato, values.nm_endereco, values.dt_nascimento,
+        values.nm_medico, values.dt_data, id];
+    const rows = await conn.query(sql, customers);
+    return rows;
+}
+
 module.exports = {
     selectAgenda,
     agendaTotal,
@@ -108,5 +118,6 @@ module.exports = {
     deleteAgenda,
     editAgendaPag,
     selectMedico, 
-    inserirProntuário
+    inserirProntuário,
+    editProntuario
 }

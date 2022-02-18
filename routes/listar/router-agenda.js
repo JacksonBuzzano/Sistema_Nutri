@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../../models/SQLAgenda/consultAgenda");
-const db_paciente = require("../../models/SQLPatients/consultPatients")
+const db_paciente = require("../../models/SQLPatients/consultPatients");
 
 //Rotas
 router.get('/', function(req, res) {
@@ -102,7 +102,13 @@ router.post('/editar-agenda', function(req, res) {
             'nm_endereco': req.body.endereco,
             'dt_nascimento': req.body.nascimento
         };
+
+        const dadosProntuario = {
+            'nm_paciente': req.body.cliente,
+        }
+
         await db.editAgenda(id, dados);
+        db.editProntuario(id, dados, dadosProntuario)
         res.redirect('/form-agenda')
     })();
 });
