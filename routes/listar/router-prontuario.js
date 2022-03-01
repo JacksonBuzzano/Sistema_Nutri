@@ -53,8 +53,9 @@ router.post('/editar-prontuario', function(req, res) {
 router.get('/editar/:id', function(req, res) {  
     (async () => {
         let id = req.params.id;
+        const medico = await db_consultaAgenda.selectMedico()
         const [prontuario] = await db.selectProntuarioID([id])
-        res.render('form-prontuario/editar-prontuario', {dados:prontuario})
+        res.render('form-prontuario/editar-prontuario', {dados:prontuario, medicos:medico})
     })();
 });
 

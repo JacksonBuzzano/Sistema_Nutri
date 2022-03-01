@@ -73,8 +73,9 @@ router.post('/cad-novo/agenda', function(req, res) {
         const dadosProntuario = {
             'nm_paciente': req.body.paciente
         }
-        await db.inserirProntuário(dados, dadosProntuario)
+           
         await db.registerAgenda(dados);
+        await db.inserirProntuário(dados, dadosProntuario)
         res.redirect('/form-agenda')
     })();
 });

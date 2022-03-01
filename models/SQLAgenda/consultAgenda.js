@@ -87,11 +87,15 @@ async function deleteAgenda(id) {
 
 async function inserirProntuário(values, dadosProntuario) {
     const conn = await connect.connect();
+
+    const nr_seq_agenda = 'SELECT COALESCE(MAX(nr_sequencia),0)  AS Total from jb_agenda';
+    const [retorno] = await conn.query(nr_seq_agenda);
+
     const sql = 'INSERT INTO jb_prontuario (nm_paciente, nm_cpf, nm_telefone, nm_endereco, dt_data_nascimento,' +
         'nm_plano_saude, nm_medico, dt_consulta, nm_historico_gest, nm_historico_cirur, nm_medicamentos, nm_alergia,' + 
-        'nm_sintomas, nm_prescricao, nm_habitos, nm_outras_inform) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        'nm_sintomas, nm_prescricao, nm_habitos, nm_outras_inform, nr_seq_agenda) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
     const customers = [dadosProntuario.nm_paciente, values.nm_cpf, values.nm_contato, values.nm_endereco, values.dt_nascimento, null, 
-        values.nm_medico, values.dt_data, null, null, null, null, null, null, null, null];
+        values.nm_medico, values.dt_data, null, null, null, null, null, null, null, null, retorno[0].Total];
     const rows = await conn.query(sql, customers);
     return rows;
 }

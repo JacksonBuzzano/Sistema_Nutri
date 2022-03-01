@@ -103,7 +103,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/form-prontuario/filtro-prontuario" method="POST">
+                               <form action="/form-prontuario/filtro-prontuario" method="POST">
                     <div class="row g-3">
                         <div class="col">
                             <label for="">Nome do paciente:</label>
@@ -114,16 +114,6 @@
                             <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" placeholder="000.000.000-00" onkeypress="formataCPF(this)">
                         </div>
                     </div>    
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="">Data inicio:</label>
-                            <input type="date" class="form-control" name="data_inicio"><br>
-                        </div>
-                        <div class="col">
-                            <label for="">Data final:</label>
-                            <input type="date" class="form-control" name="data_final"><br>
-                        </div>
-                    </div>
                     <label for="">Médico:</label>
                      <select class="form-select" aria-label="Default select example" id="medico" onblur="valorOptionMedico();">
                         <option>...</option>
@@ -131,6 +121,7 @@
                         <option value="{{nm_nome_usuario}}">{{nm_nome_usuario}}</option>
                         {{/each}}
                     </select><br>
+                   <input type="hidden" value="" name="medico" id="option-medico">
                     <button type="submit" class="btn btn-success" onclick="carregarSpinners()">Pesquisar</button>
                 </form>
             </div>

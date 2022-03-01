@@ -33,9 +33,9 @@ async function listarProntuario() {
 
 async function filtroPacienteProntuario(nome, cpf, medico) {
     const conn = await connect.connect();
-    const sql = 'SELECT a.nm_cliente, a.nm_cpf, a.nm_telefone, a.nm_endereco, a.dt_nascimento, b.dt_data, b.nm_medico FROM jb_cliente a, '+ 
-                'jb_agenda b WHERE a.nm_cliente LIKE "'+ nome +'%" AND a.nr_sequencia = b.nm_paciente AND a.nm_cpf LIKE "'+ cpf +'%" ' + 
-                'AND b.nm_medico LIKE "%'+ medico +'%" AND b.ie_ativo = "S" ORDER BY a.nm_cliente';
+    const sql = 'SELECT c.nr_prontuario, a.nm_cliente, a.nm_cpf, a.nm_telefone, a.nm_endereco, a.dt_nascimento, b.dt_data, b.nm_medico ' + 
+                'FROM jb_cliente a, jb_agenda b, jb_prontuario c WHERE a.nm_cliente LIKE "'+ nome +'%" AND a.nr_sequencia = b.nm_paciente ' +
+                'AND c.nr_seq_agenda = b.nr_sequencia AND a.nm_cpf LIKE "'+ cpf +'%" AND b.nm_medico LIKE "%'+ medico +'%" AND b.ie_ativo = "S" ORDER BY a.nm_cliente';
     const [rows] = await conn.query(sql);
     return rows;
 }
