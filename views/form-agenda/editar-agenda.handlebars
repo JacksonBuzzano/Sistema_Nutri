@@ -1,7 +1,7 @@
 <h1>Dados da agenda</h1>
 <main>
-    <div class="container">
-        <section class="container">
+    <div class="container main-pagamento">
+        <section class="container section-pag">
             <form class="row g-3" action="/form-agenda/editar-agenda" method="POST">
                 <h2>
                     <span>
@@ -56,7 +56,7 @@
                     <input type="text" class="form-control" name="nascimento" value="{{dados.dt_nascimento}}" readonly>
                 </div>
                 <br>
-                <div class="col-md-12">
+                <div class="col-md-12 botao-fixo">
                     <a href="/form-agenda/excluir/{{dados.nr_sequencia}}" class="btn btn-danger" id="link"><span>
                             <ion-icon name="trash"></ion-icon>
                         </span> Excluir</a>

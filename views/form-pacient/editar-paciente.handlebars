@@ -1,7 +1,7 @@
 <h1>Dados do paciente</h1>
 <main>
-    <div class="container">
-        <section class="container">
+    <div class="container main-pagamento">
+        <section class="container section-pag">
             <form class="row g-3" action="/form-pacient/editar-paciente" method="POST" onSubmit="return(verifica())">
                 <h2>
                     <span>
@@ -70,8 +70,8 @@
                     <label for="imc" class="form-label">IMC:</label>
                     <input type="text" class="form-control" name="imc" value="{{dados.nm_imc}}" readonly>
                 </div>
-                <br>
-                <div class="col-md-12">
+                <hr>
+                <div class="col-md-12 botao-fixo">
                     <a href="/form-pacient/excluir/{{dados.nr_sequencia}}" class="btn btn-danger" id="link"
                         onclick="carregarSpinners()"><span>
                             <ion-icon name="trash"></ion-icon>

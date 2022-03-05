@@ -1,10 +1,7 @@
 <h1>Cadastro de usuários</h1>
 <main>
-    <div class="container">
-        <section class="container">
-            <button class="btn btn-primary" id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalPaciente"><span>
-                    <ion-icon name="arrow-undo"></ion-icon>
-                </span> Cancelar</button>
+    <div class="container main-pagamento">
+        <section class="container section-pag">
             <hr>
             <form class="row g-3" action="/form-usuario/cadastrar/novo" method="POST">
                 <div class="col-md-7">
@@ -92,11 +89,14 @@
                     <label for="confirma" class="form-label">Confirmar senha:</label>
                     <input type="password" class="form-control" name="confirma" id="confirma" onblur="confirmaSenha(this);">
                 </div>
-                <br>
-                <div class="col-md-12">
+                <hr>
+                <div class="col-md-12 botao-fixo">
                     <button type="submit" class="btn btn-success ativar-btn" id="link" onclick="carregarSpinners()" disabled><span>
                             <ion-icon name="person-add"></ion-icon>
                         </span> Cadastrar</button>
+                    <button class="btn btn-primary" id="link" data-bs-toggle="modal" data-bs-target="#modalPaciente"><span>
+                            <ion-icon name="arrow-undo"></ion-icon>
+                        </span> Cancelar</button>
                 </div>
             </form>
         </section>

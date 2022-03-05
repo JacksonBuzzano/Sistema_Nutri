@@ -110,6 +110,23 @@ h1 {
   font-size: 18px;
 }
 
+.botao-fixo-pag{
+  padding: 5px;
+  position: fixed;
+  width: 41.8%;
+  right: 2.7%;
+  bottom: 11%;
+  z-index: 1;
+}
+.botao-fixo{
+  padding: 5px;
+  position: fixed;
+  width: 80%;
+  right: 10.3%;
+  bottom: 11%;
+  z-index: 1;
+}
+
 /*Estilizando o MENU*/
 nav {
   height: 47px;
@@ -163,8 +180,7 @@ span {
   float: right;
 }
 
-#voltarPagina {
-  margin-top: 10px;
+#icone-pesquisa {
   width: 125px;
   margin-left: 89%;
 }

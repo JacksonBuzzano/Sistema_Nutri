@@ -1,7 +1,7 @@
 <h1>Dados do usuário</h1>
 <main>
-    <div class="container">
-        <section class="container">
+    <div class="container main-pagamento">
+        <section class="container section-pag">
             <form class="row g-3" action="/form-usuario/editar-usuario" method="POST" onSubmit="return(verifica())">
                 <h2>
                     <span>
@@ -100,8 +100,8 @@
                     <label for="confirma" class="form-label">Confirmar senha:</label>
                     <input type="password" class="form-control" name="confirma" id="confirma" onblur="confirmaSenha(this);" disabled>
                 </div>
-                <br>
-                <div class="col-md-12">
+                <hr>
+                <div class="col-md-12 botao-fixo">
                     <a href="/form-usuario/excluir/{{dados.nr_codigo}}" class="btn btn-danger"  name="teste" id="link"
                         onclick="carregarSpinners()"><span>
                             <ion-icon name="trash"></ion-icon>

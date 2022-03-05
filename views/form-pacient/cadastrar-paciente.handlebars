@@ -1,10 +1,7 @@
 <h1>Preencha os campos abaixo</h1>
 <main>
-    <div class="container">
-        <section class="container">
-            <button class="btn btn-primary" id="voltarPagina" data-bs-toggle="modal" data-bs-target="#modalPaciente"><span>
-                    <ion-icon name="arrow-undo"></ion-icon>
-                </span> Cancelar</button>
+    <div class="container main-pagamento">
+        <section class="container section-pag">
             <hr>
             <form class="row g-3" action="/form-pacient/cad/novo" method="POST">
                 <div class="col-md-7">
@@ -63,11 +60,14 @@
                     <label for="imc" class="form-label">IMC:</label>
                     <input type="text" class="form-control" name="imc" readonly>
                 </div>
-                <br>
-                <div class="col-md-12">
+                <hr>
+                <div class="col-md-12 botao-fixo">
                     <button type="submit" class="btn btn-success" id="link" onclick="carregarSpinners()"><span>
                             <ion-icon name="person-add"></ion-icon>
                         </span> Cadastrar</button>
+                    <button class="btn btn-primary" id="link" data-bs-toggle="modal" data-bs-target="#modalPaciente"><span>
+                            <ion-icon name="arrow-undo"></ion-icon>
+                        </span> Cancelar</button>
                 </div>
             </form>
         </section>
